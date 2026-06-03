@@ -25,7 +25,9 @@
     "home": "Home",
     "privacy": "100% private — runs in your browser, nothing is uploaded",
     "faqHeading": "Frequently asked questions",
-    "seeAlso": "See also"
+    "seeAlso": "See also",
+    "addFavorite": "Add to favorites",
+    "removeFavorite": "Remove from favorites"
   },
   "footer": {
     "tagline": "Free, private, browser-based developer tools.",
@@ -52,7 +54,10 @@
     "heroSub": "Fast, clean, ad-light utilities for everyday development. Everything runs in your browser — your data is never uploaded to a server.",
     "badgeClientSide": "100% client-side",
     "badgeInstant": "Instant",
-    "badgeNoSignup": "No sign-up"
+    "badgeNoSignup": "No sign-up",
+    "popular": "Popular tools",
+    "favorites": "Your favorites",
+    "allTools": "All tools"
   },
   "categories": {
     "data": "Data & Formats",
@@ -61,6 +66,14 @@
     "web-security": "Web & Security",
     "generators": "Generators",
     "time-ids": "Time & IDs"
+  },
+  "categoryDesc": {
+    "data": "Format, convert and inspect structured data.",
+    "text": "Transform, compare and analyze text.",
+    "encoding": "Encode, decode and escape data safely.",
+    "web-security": "Tokens, hashes and authentication helpers.",
+    "generators": "Generate codes, passwords and more.",
+    "time-ids": "Work with time, schedules and identifiers."
   },
   "switcher": {
     "label": "Language"

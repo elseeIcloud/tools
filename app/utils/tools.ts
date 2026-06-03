@@ -623,3 +623,19 @@ export function toolsByCategory(): { category: ToolCategory; items: Tool[] }[] {
     items: tools.filter((t) => t.category === category),
   })).filter((g) => g.items.length > 0)
 }
+
+// Curated "popular" tools for the homepage highlight row.
+export const POPULAR_SLUGS = [
+  'json-formatter',
+  'base64-encode-decode',
+  'jwt-decoder',
+  'hash-generator',
+  'uuid-generator',
+  'password-generator',
+  'qr-code-generator',
+  'unix-timestamp-converter',
+]
+
+export function getPopular(): Tool[] {
+  return POPULAR_SLUGS.map((s) => bySlug.get(s)).filter((t): t is Tool => !!t)
+}

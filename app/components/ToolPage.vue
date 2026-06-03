@@ -31,6 +31,7 @@ const tool = getTool(props.slug)
           aria-hidden="true"
         >{{ tool?.icon }}</span>
         <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">{{ meta?.name }}</h1>
+        <FavoriteButton :slug="slug" class="ml-auto shrink-0" />
       </div>
       <p class="mt-3 max-w-2xl text-ink-600 dark:text-ink-300">{{ meta?.description }}</p>
       <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-700 dark:text-green-400">

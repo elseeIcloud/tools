@@ -19,6 +19,22 @@ useSeoMeta({
   ogType: 'website',
   ogSiteName: SITE_NAME,
 })
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: t('tool.home'), item: SITE_URL + localePath('/') },
+          { '@type': 'ListItem', position: 2, name: t(`${props.page}.heading`), item: SITE_URL + localePath(`/${props.page}`) },
+        ],
+      }),
+    },
+  ],
+})
 </script>
 
 <template>

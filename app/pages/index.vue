@@ -2,6 +2,12 @@
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const groups = toolsByCategory()
+const popular = getPopular()
+
+const { favorites } = useFavorites()
+const favoriteTools = computed(() =>
+  favorites.value.map((s) => getTool(s)).filter((tl): tl is NonNullable<typeof tl> => !!tl),
+)
 
 const homeUrl = computed(() => SITE_URL + localePath('/'))
 
@@ -49,7 +55,7 @@ useHead(() => ({
 <template>
   <div>
     <!-- Hero -->
-    <section class="container-tool pt-14 pb-10 text-center sm:pt-20 sm:pb-14">
+    <section class="container-tool pt-14 pb-8 text-center sm:pt-20 sm:pb-10">
       <h1 class="mx-auto max-w-3xl text-3xl font-extrabold tracking-tight sm:text-5xl">
         {{ t('home.heroPre') }}
         <span class="text-accent">{{ t('home.heroAccent') }}</span>
@@ -64,23 +70,34 @@ useHead(() => ({
       </div>
     </section>
 
-    <!-- Tool grid by category -->
-    <section class="container-tool pb-16">
-      <div v-for="g in groups" :key="g.category" class="mb-10">
-        <h2 class="mb-4 text-lg font-semibold text-ink-900 dark:text-ink-100">{{ t(`categories.${g.category}`) }}</h2>
+    <!-- Favorites (client-only: depends on localStorage) -->
+    <ClientOnly>
+      <section v-if="favoriteTools.length" class="container-tool pb-6">
+        <h2 class="mb-4 flex items-center gap-2 text-lg font-semibold text-ink-900 dark:text-ink-100">
+          <span class="text-amber-500">★</span> {{ t('home.favorites') }}
+        </h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <NuxtLink
-            v-for="tool in g.items"
-            :key="tool.slug"
-            :to="localePath(`/${tool.slug}`)"
-            class="card group flex flex-col gap-2 p-5 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-lg"
-          >
-            <div class="flex items-center gap-3">
-              <span class="grid h-10 w-10 place-items-center rounded-xl bg-accent/10 font-mono text-lg text-accent" aria-hidden="true">{{ tool.icon }}</span>
-              <span class="font-semibold group-hover:text-accent">{{ tool[locale].name }}</span>
-            </div>
-            <p class="line-clamp-2 text-sm text-ink-500 dark:text-ink-400">{{ tool[locale].description }}</p>
-          </NuxtLink>
+          <ToolCard v-for="tool in favoriteTools" :key="tool.slug" :tool="tool" />
+        </div>
+      </section>
+    </ClientOnly>
+
+    <!-- Popular -->
+    <section class="container-tool pb-6">
+      <h2 class="mb-4 text-lg font-semibold text-ink-900 dark:text-ink-100">{{ t('home.popular') }}</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ToolCard v-for="tool in popular" :key="tool.slug" :tool="tool" />
+      </div>
+    </section>
+
+    <!-- All tools by category -->
+    <section class="container-tool pb-16">
+      <h2 class="mb-6 mt-4 border-t border-ink-200 pt-8 text-lg font-semibold text-ink-900 dark:border-ink-800 dark:text-ink-100">{{ t('home.allTools') }}</h2>
+      <div v-for="g in groups" :key="g.category" class="mb-10">
+        <h3 class="text-base font-semibold text-ink-900 dark:text-ink-100">{{ t(`categories.${g.category}`) }}</h3>
+        <p class="mb-4 mt-1 text-sm text-ink-500 dark:text-ink-400">{{ t(`categoryDesc.${g.category}`) }}</p>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ToolCard v-for="tool in g.items" :key="tool.slug" :tool="tool" />
         </div>
       </div>
     </section>
