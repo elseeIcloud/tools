@@ -10,3 +10,6 @@ compatibility_date = "2025-01-01"
 directory = ".output/public"
 # Serve the prerendered 404.html (with a 404 status) for unknown paths.
 not_found_handling = "404-page"
+# Canonical URLs have no trailing slash, so serve /json-formatter directly (200)
+# and 307 /json-formatter/ -> /json-formatter (instead of the default opposite).
+html_handling = "drop-trailing-slash"

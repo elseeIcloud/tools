@@ -1,8 +1,9 @@
 // Single source of truth for site identity.
 // Used by nuxt.config (sitemap/robots/canonical base) and the SEO composable.
 //
-// ⚠️ Change SITE_URL to your real production domain before deploying.
-export const SITE_URL = 'https://devtools.example.com'
+// Production origin — sitemap, robots, canonical and hreflang all derive from it.
+// Swap this for your custom domain when you attach one (then commit + push).
+export const SITE_URL = 'https://tools.dima-zavgorodniy1.workers.dev'
 export const SITE_NAME = 'DevTools'
 export const SITE_TAGLINE = 'Free, private, browser-based developer tools'
 export const SITE_DESCRIPTION =
