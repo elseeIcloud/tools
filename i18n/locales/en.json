@@ -59,6 +59,7 @@
     "text": "Text",
     "encoding": "Encoding",
     "web-security": "Web & Security",
+    "generators": "Generators",
     "time-ids": "Time & IDs"
   },
   "switcher": {

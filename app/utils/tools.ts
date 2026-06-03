@@ -18,7 +18,7 @@ export interface ToolI18n {
   keywords: string[]
 }
 
-export type ToolCategory = 'data' | 'text' | 'encoding' | 'web-security' | 'time-ids'
+export type ToolCategory = 'data' | 'text' | 'encoding' | 'web-security' | 'generators' | 'time-ids'
 
 export interface Tool {
   /** URL slug, also the route path: /<slug> (ru) and /en/<slug> (en) */
@@ -38,6 +38,7 @@ export const CATEGORY_ORDER: ToolCategory[] = [
   'text',
   'encoding',
   'web-security',
+  'generators',
   'time-ids',
 ]
 
@@ -360,6 +361,126 @@ export const tools: Tool[] = [
       description:
         'Бесплатный онлайн-генератор slug. Превращайте любой заголовок в чистый URL-безопасный slug с транслитерацией, нижним регистром и дефисами. Работает в браузере.',
       keywords: ['генератор slug', 'slugify', 'url slug', 'сделать slug', 'slugify онлайн', 'человекопонятный url'],
+    },
+  },
+  {
+    slug: 'html-entities',
+    category: 'encoding',
+    icon: '&',
+    related: ['url-encode-decode', 'base64-encode-decode', 'json-formatter'],
+    en: {
+      name: 'HTML Entities Encode/Decode',
+      title: 'HTML Entity Encoder & Decoder — Escape HTML Online',
+      description:
+        'Free online HTML entity encoder and decoder. Escape characters like <, >, & and quotes to HTML entities and convert them back. Everything runs in your browser.',
+      keywords: ['html entities', 'html encode', 'html decode', 'escape html', 'html entity decoder', 'htmlspecialchars'],
+    },
+    ru: {
+      name: 'HTML-сущности (кодирование/декодирование)',
+      title: 'Кодировщик и декодировщик HTML-сущностей онлайн',
+      description:
+        'Бесплатный онлайн-кодировщик и декодировщик HTML-сущностей. Экранируйте символы <, >, & и кавычки в HTML-сущности и возвращайте обратно. Всё работает в браузере.',
+      keywords: ['html сущности', 'html кодирование', 'html декодирование', 'экранирование html', 'декодер html', 'спецсимволы html'],
+    },
+  },
+  {
+    slug: 'markdown-preview',
+    category: 'text',
+    icon: 'M↓',
+    related: ['diff-checker', 'text-counter', 'case-converter'],
+    en: {
+      name: 'Markdown Preview',
+      title: 'Markdown Preview — Render Markdown to HTML Online',
+      description:
+        'Free online Markdown previewer. Write Markdown and see the rendered HTML live, plus copy the generated HTML. Everything runs in your browser.',
+      keywords: ['markdown preview', 'markdown to html', 'markdown editor', 'md preview', 'render markdown', 'markdown viewer'],
+    },
+    ru: {
+      name: 'Просмотр Markdown',
+      title: 'Просмотр Markdown — рендер Markdown в HTML онлайн',
+      description:
+        'Бесплатный онлайн-просмотрщик Markdown. Пишите Markdown и сразу видите отрендеренный HTML, плюс копируйте готовый HTML. Всё работает в браузере.',
+      keywords: ['просмотр markdown', 'markdown в html', 'редактор markdown', 'md preview', 'рендер markdown', 'markdown онлайн'],
+    },
+  },
+  {
+    slug: 'qr-code-generator',
+    category: 'generators',
+    icon: '▦',
+    related: ['password-generator', 'url-encode-decode', 'uuid-generator'],
+    en: {
+      name: 'QR Code Generator',
+      title: 'QR Code Generator — Create QR Codes Online (Free)',
+      description:
+        'Free online QR code generator. Turn any text, URL or contact into a QR code and download it as PNG or SVG. Generated entirely in your browser.',
+      keywords: ['qr code generator', 'create qr code', 'qr generator', 'qr code maker', 'generate qr', 'url to qr'],
+    },
+    ru: {
+      name: 'Генератор QR-кодов',
+      title: 'Генератор QR-кодов — создание QR онлайн бесплатно',
+      description:
+        'Бесплатный онлайн-генератор QR-кодов. Превращайте текст, ссылку или контакт в QR-код и скачивайте его в PNG или SVG. Создаётся целиком в браузере.',
+      keywords: ['генератор qr кода', 'создать qr код', 'qr генератор', 'сделать qr код', 'сгенерировать qr', 'ссылка в qr'],
+    },
+  },
+  {
+    slug: 'password-generator',
+    category: 'generators',
+    icon: '🔑',
+    related: ['uuid-generator', 'hash-generator', 'qr-code-generator'],
+    en: {
+      name: 'Password Generator',
+      title: 'Password Generator — Strong Random Passwords Online',
+      description:
+        'Free online password generator. Create strong, random passwords with custom length and character sets. Generated locally in your browser and never sent anywhere.',
+      keywords: ['password generator', 'random password', 'strong password generator', 'secure password', 'generate password', 'password maker'],
+    },
+    ru: {
+      name: 'Генератор паролей',
+      title: 'Генератор паролей — надёжные случайные пароли онлайн',
+      description:
+        'Бесплатный онлайн-генератор паролей. Создавайте надёжные случайные пароли с настройкой длины и набора символов. Генерируется локально в браузере и никуда не отправляется.',
+      keywords: ['генератор паролей', 'случайный пароль', 'надёжный пароль', 'безопасный пароль', 'сгенерировать пароль', 'придумать пароль'],
+    },
+  },
+  {
+    slug: 'image-to-base64',
+    category: 'encoding',
+    icon: '🖼',
+    related: ['base64-encode-decode', 'url-encode-decode', 'color-converter'],
+    en: {
+      name: 'Image to Base64',
+      title: 'Image to Base64 — Convert Images to a Data URI Online',
+      description:
+        'Free online image to Base64 converter. Drop an image to get a Base64 data URI for CSS or HTML, with one-click copy. Files are processed in your browser, never uploaded.',
+      keywords: ['image to base64', 'base64 image', 'image to data uri', 'png to base64', 'convert image base64', 'image encoder'],
+    },
+    ru: {
+      name: 'Изображение в Base64',
+      title: 'Изображение в Base64 — конвертация картинок в data URI онлайн',
+      description:
+        'Бесплатный онлайн-конвертер изображений в Base64. Перетащите картинку и получите data URI в Base64 для CSS или HTML, с копированием в один клик. Файлы обрабатываются в браузере и не загружаются на сервер.',
+      keywords: ['изображение в base64', 'base64 картинка', 'картинка в data uri', 'png в base64', 'конвертер изображений base64', 'кодировать изображение'],
+    },
+  },
+  {
+    slug: 'json-to-csv',
+    category: 'data',
+    icon: '↔',
+    related: ['json-formatter', 'number-base-converter', 'base64-encode-decode'],
+    en: {
+      name: 'JSON ↔ CSV Converter',
+      title: 'JSON to CSV Converter — Convert Both Ways Online',
+      description:
+        'Free online JSON to CSV and CSV to JSON converter. Convert an array of JSON objects to CSV and back, with delimiter options. Everything runs in your browser.',
+      keywords: ['json to csv', 'csv to json', 'json csv converter', 'convert json to csv', 'csv json', 'json2csv'],
+    },
+    ru: {
+      name: 'Конвертер JSON ↔ CSV',
+      title: 'Конвертер JSON в CSV — преобразование в обе стороны онлайн',
+      description:
+        'Бесплатный онлайн-конвертер JSON в CSV и CSV в JSON. Преобразуйте массив JSON-объектов в CSV и обратно, с настройкой разделителя. Всё работает в браузере.',
+      keywords: ['json в csv', 'csv в json', 'конвертер json csv', 'преобразовать json в csv', 'csv json', 'json2csv'],
     },
   },
 ]
