@@ -29,7 +29,20 @@
   },
   "footer": {
     "tagline": "Free, private, browser-based developer tools.",
-    "privacyNote": "All tools run client-side. Your data never leaves your device."
+    "privacyNote": "All tools run client-side. Your data never leaves your device.",
+    "about": "About",
+    "privacy": "Privacy"
+  },
+  "about": {
+    "title": "About",
+    "heading": "About DevTools",
+    "description": "DevTools is a free collection of fast, privacy-first developer utilities that run entirely in your browser — no sign-up, no tracking, no data uploaded."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "heading": "Privacy Policy",
+    "description": "How DevTools handles your data: tools run entirely in your browser, nothing you paste is uploaded, and we set no tracking cookies.",
+    "updated": "Last updated: 3 June 2026"
   },
   "home": {
     "metaTitle": "Free, private, browser-based developer tools",

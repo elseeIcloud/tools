@@ -59,9 +59,15 @@ useHead({
             </ul>
           </div>
         </div>
-        <div class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-ink-200 pt-6 text-sm text-ink-500 dark:border-ink-800 dark:text-ink-400 sm:flex-row">
-          <p>{{ SITE_NAME }} — {{ t('footer.tagline') }}</p>
-          <p>{{ t('footer.privacyNote') }}</p>
+        <div class="mt-10 border-t border-ink-200 pt-6 dark:border-ink-800">
+          <div class="flex flex-col items-center justify-between gap-3 text-sm text-ink-500 dark:text-ink-400 sm:flex-row">
+            <p>{{ SITE_NAME }} — {{ t('footer.tagline') }}</p>
+            <nav class="flex items-center gap-4">
+              <NuxtLink :to="localePath('/about')" class="hover:text-accent">{{ t('footer.about') }}</NuxtLink>
+              <NuxtLink :to="localePath('/privacy')" class="hover:text-accent">{{ t('footer.privacy') }}</NuxtLink>
+            </nav>
+          </div>
+          <p class="mt-3 text-center text-xs text-ink-400 sm:text-left">{{ t('footer.privacyNote') }}</p>
         </div>
       </div>
     </footer>
