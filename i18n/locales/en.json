@@ -56,6 +56,7 @@
   },
   "categories": {
     "data": "Data & Formats",
+    "text": "Text",
     "encoding": "Encoding",
     "web-security": "Web & Security",
     "time-ids": "Time & IDs"

@@ -18,7 +18,7 @@ export interface ToolI18n {
   keywords: string[]
 }
 
-export type ToolCategory = 'data' | 'encoding' | 'web-security' | 'time-ids'
+export type ToolCategory = 'data' | 'text' | 'encoding' | 'web-security' | 'time-ids'
 
 export interface Tool {
   /** URL slug, also the route path: /<slug> (ru) and /en/<slug> (en) */
@@ -35,6 +35,7 @@ export interface Tool {
 
 export const CATEGORY_ORDER: ToolCategory[] = [
   'data',
+  'text',
   'encoding',
   'web-security',
   'time-ids',
@@ -199,6 +200,166 @@ export const tools: Tool[] = [
       description:
         'Бесплатный онлайн-генератор хешей. Вычисляйте контрольные суммы MD5, SHA-1, SHA-256 и SHA-512 для любого текста мгновенно. Всё хешируется локально в браузере — ничего не загружается.',
       keywords: ['генератор хешей', 'md5 генератор', 'sha256 генератор', 'sha1 хеш', 'sha512 хеш', 'хеш онлайн'],
+    },
+  },
+  {
+    slug: 'diff-checker',
+    category: 'text',
+    icon: '≠',
+    related: ['text-counter', 'json-formatter', 'case-converter'],
+    en: {
+      name: 'Diff Checker',
+      title: 'Diff Checker — Compare Two Texts Online',
+      description:
+        'Free online diff checker. Compare two blocks of text or code line by line and highlight what was added, removed or changed. Runs entirely in your browser.',
+      keywords: ['text diff', 'diff checker', 'compare text', 'text compare', 'diff tool', 'compare two files'],
+    },
+    ru: {
+      name: 'Сравнение текста (diff)',
+      title: 'Diff-чекер — сравнение двух текстов онлайн',
+      description:
+        'Бесплатный онлайн diff-чекер. Сравнивайте два блока текста или кода построчно и подсвечивайте добавленное, удалённое и изменённое. Всё работает в браузере.',
+      keywords: ['сравнение текста', 'diff чекер', 'сравнить текст', 'текстовый diff', 'сравнить два файла', 'diff онлайн'],
+    },
+  },
+  {
+    slug: 'color-converter',
+    category: 'data',
+    icon: '🎨',
+    related: ['number-base-converter', 'json-formatter', 'hash-generator'],
+    en: {
+      name: 'Color Converter',
+      title: 'Color Converter — HEX, RGB & HSL Online',
+      description:
+        'Free online color converter. Convert colors between HEX, RGB and HSL, pick a color visually, and preview it instantly. Everything runs in your browser.',
+      keywords: ['color converter', 'hex to rgb', 'rgb to hex', 'hex to hsl', 'color picker', 'rgb hsl converter'],
+    },
+    ru: {
+      name: 'Конвертер цветов',
+      title: 'Конвертер цветов — HEX, RGB и HSL онлайн',
+      description:
+        'Бесплатный онлайн-конвертер цветов. Переводите цвета между HEX, RGB и HSL, выбирайте цвет визуально и сразу смотрите превью. Всё работает в браузере.',
+      keywords: ['конвертер цветов', 'hex в rgb', 'rgb в hex', 'hex в hsl', 'выбор цвета', 'конвертер rgb hsl'],
+    },
+  },
+  {
+    slug: 'lorem-ipsum-generator',
+    category: 'text',
+    icon: '¶',
+    related: ['text-counter', 'case-converter', 'slug-generator'],
+    en: {
+      name: 'Lorem Ipsum Generator',
+      title: 'Lorem Ipsum Generator — Placeholder Text Online',
+      description:
+        'Free online Lorem Ipsum generator. Create placeholder paragraphs, sentences or words for mockups and layouts, then copy with one click. Runs in your browser.',
+      keywords: ['lorem ipsum generator', 'lorem ipsum', 'placeholder text', 'dummy text', 'filler text', 'lipsum'],
+    },
+    ru: {
+      name: 'Генератор Lorem Ipsum',
+      title: 'Генератор Lorem Ipsum — текст-рыба онлайн',
+      description:
+        'Бесплатный онлайн-генератор Lorem Ipsum. Создавайте текст-рыбу — абзацы, предложения или слова — для макетов и вёрстки и копируйте в один клик. Работает в браузере.',
+      keywords: ['генератор lorem ipsum', 'lorem ipsum', 'текст рыба', 'placeholder текст', 'рыба для текста', 'lipsum'],
+    },
+  },
+  {
+    slug: 'query-string-parser',
+    category: 'encoding',
+    icon: '?',
+    related: ['url-encode-decode', 'base64-encode-decode', 'json-formatter'],
+    en: {
+      name: 'Query String Parser',
+      title: 'Query String Parser — Parse & Build URL Parameters',
+      description:
+        'Free online query string parser. Split a URL query string into readable key-value pairs and build one back, with encoding handled for you. Runs in your browser.',
+      keywords: ['query string parser', 'parse query string', 'url parameters', 'querystring', 'url query parser', 'build query string'],
+    },
+    ru: {
+      name: 'Парсер query-строк',
+      title: 'Парсер query-строк — разбор и сборка параметров URL',
+      description:
+        'Бесплатный онлайн-парсер query-строк. Разбивайте query-строку URL на читаемые пары ключ-значение и собирайте обратно, с автоматическим кодированием. Работает в браузере.',
+      keywords: ['парсер query строки', 'разбор query string', 'параметры url', 'querystring', 'парсер url', 'собрать query строку'],
+    },
+  },
+  {
+    slug: 'case-converter',
+    category: 'text',
+    icon: 'Aa',
+    related: ['slug-generator', 'text-counter', 'diff-checker'],
+    en: {
+      name: 'Case Converter',
+      title: 'Case Converter — camelCase, snake_case, kebab-case & More',
+      description:
+        'Free online case converter. Convert text between camelCase, snake_case, kebab-case, CONSTANT_CASE, Title Case and more, instantly. Runs in your browser.',
+      keywords: ['case converter', 'camelcase converter', 'snake case', 'kebab case', 'title case', 'convert case online'],
+    },
+    ru: {
+      name: 'Конвертер регистра',
+      title: 'Конвертер регистра — camelCase, snake_case, kebab-case и другие',
+      description:
+        'Бесплатный онлайн-конвертер регистра. Преобразуйте текст между camelCase, snake_case, kebab-case, CONSTANT_CASE, Title Case и другими стилями мгновенно. Работает в браузере.',
+      keywords: ['конвертер регистра', 'camelcase', 'snake case', 'kebab case', 'title case', 'изменить регистр онлайн'],
+    },
+  },
+  {
+    slug: 'text-counter',
+    category: 'text',
+    icon: '∑',
+    related: ['case-converter', 'lorem-ipsum-generator', 'diff-checker'],
+    en: {
+      name: 'Text Counter',
+      title: 'Text Counter — Characters, Words & Lines Online',
+      description:
+        'Free online text counter. Count characters, words, sentences, lines and estimated reading time as you type. Everything runs in your browser.',
+      keywords: ['text counter', 'word counter', 'character counter', 'letter count', 'line counter', 'count words online'],
+    },
+    ru: {
+      name: 'Счётчик текста',
+      title: 'Счётчик текста — символы, слова и строки онлайн',
+      description:
+        'Бесплатный онлайн-счётчик текста. Считайте символы, слова, предложения, строки и примерное время чтения прямо при вводе. Всё работает в браузере.',
+      keywords: ['счётчик текста', 'счётчик слов', 'счётчик символов', 'подсчёт слов', 'количество символов', 'посчитать слова онлайн'],
+    },
+  },
+  {
+    slug: 'number-base-converter',
+    category: 'data',
+    icon: '0x',
+    related: ['color-converter', 'hash-generator', 'unix-timestamp-converter'],
+    en: {
+      name: 'Number Base Converter',
+      title: 'Number Base Converter — Binary, Octal, Decimal & Hex',
+      description:
+        'Free online number base converter. Convert numbers between binary, octal, decimal and hexadecimal instantly, with arbitrary bases supported. Runs in your browser.',
+      keywords: ['number base converter', 'binary to decimal', 'decimal to hex', 'hex to binary', 'base converter', 'radix converter'],
+    },
+    ru: {
+      name: 'Конвертер систем счисления',
+      title: 'Конвертер систем счисления — двоичная, восьмеричная, десятичная и hex',
+      description:
+        'Бесплатный онлайн-конвертер систем счисления. Переводите числа между двоичной, восьмеричной, десятичной и шестнадцатеричной системами мгновенно. Работает в браузере.',
+      keywords: ['конвертер систем счисления', 'двоичная в десятичную', 'десятичная в hex', 'hex в двоичную', 'перевод чисел', 'системы счисления'],
+    },
+  },
+  {
+    slug: 'slug-generator',
+    category: 'text',
+    icon: '🔗',
+    related: ['case-converter', 'url-encode-decode', 'lorem-ipsum-generator'],
+    en: {
+      name: 'Slug Generator',
+      title: 'Slug Generator — Create URL Slugs Online',
+      description:
+        'Free online slug generator. Turn any title into a clean, URL-safe slug with transliteration, lowercasing and hyphenation. Runs in your browser.',
+      keywords: ['slug generator', 'slugify', 'url slug', 'make slug', 'slugify online', 'url friendly text'],
+    },
+    ru: {
+      name: 'Генератор slug',
+      title: 'Генератор slug — создание URL-слагов онлайн',
+      description:
+        'Бесплатный онлайн-генератор slug. Превращайте любой заголовок в чистый URL-безопасный slug с транслитерацией, нижним регистром и дефисами. Работает в браузере.',
+      keywords: ['генератор slug', 'slugify', 'url slug', 'сделать slug', 'slugify онлайн', 'человекопонятный url'],
     },
   },
 ]
