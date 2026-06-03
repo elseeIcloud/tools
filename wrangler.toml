@@ -1,8 +1,12 @@
-# Cloudflare Pages project config (read by both the dashboard Git integration
-# and `wrangler pages deploy`). This is a fully static site — no Functions.
+# Cloudflare Workers (Static Assets) config. The site is fully static (SSG):
+# `npm run generate` writes prerendered HTML to .output/public, and this Worker
+# just serves those files — there is no server-side code.
 #
-# `name` must be lowercase letters/digits/hyphens; change it to your project
-# name in the Cloudflare dashboard if different.
-name = "devtools"
-pages_build_output_dir = ".output/public"
+# `name` must be lowercase letters/digits/hyphens; it becomes <name>.workers.dev.
+name = "tools"
 compatibility_date = "2025-01-01"
+
+[assets]
+directory = ".output/public"
+# Serve the prerendered 404.html (with a 404 status) for unknown paths.
+not_found_handling = "404-page"

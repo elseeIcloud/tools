@@ -105,29 +105,31 @@ or behind `if (import.meta.client)`. Anything based on the current time or
 randomness must be produced client-side (init to a placeholder, fill in
 `onMounted`, wrap in `<ClientOnly>`) to avoid hydration mismatches.
 
-## Deploy — Cloudflare Pages (Git integration, auto-deploy on push)
+## Deploy — Cloudflare Workers (Static Assets, Git build, auto-deploy on push)
 
-This repo is preconfigured for Cloudflare Pages:
+This repo is preconfigured for Cloudflare Workers Static Assets:
 
-- `wrangler.toml` — `pages_build_output_dir = ".output/public"`
-- `.node-version` — pins Node 22 for the Pages build
+- `wrangler.toml` — `[assets] directory = ".output/public"`, `not_found_handling = "404-page"`
+- `.node-version` — pins Node 22 for the build
 - `public/_headers` — long-cache headers for hashed `/_nuxt/*` assets
 
 One-time setup:
 
 1. **Set your real domain** in `app/utils/site.ts` (`SITE_URL`) and commit.
    Sitemap, robots, canonical and hreflang all derive from it.
-2. Push this repo to GitHub (or GitLab).
-3. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**,
-   pick the repo, then set:
-   - **Framework preset:** Nuxt.js (or "None")
+2. Push this repo to GitHub.
+3. Cloudflare dashboard → **Workers & Pages → Create → Import a repository**,
+   pick `tools`, then set:
    - **Build command:** `npm run generate`
-   - **Build output directory:** `.output/public`
-   - Node version is taken from `.node-version` (22).
-4. Save & Deploy. Every push to the production branch now auto-builds and deploys;
-   pull requests get preview deployments.
+   - **Deploy command:** `npx wrangler deploy`
+   - Node version is taken from `.node-version` (22); if the build complains,
+     add a build variable `NODE_VERSION = 22`.
+4. Create and Deploy. Every push to the production branch now auto-builds and
+   deploys; the site is live at `https://<name>.<account>.workers.dev`.
+
+Local one-off deploy (alternative): `npx wrangler deploy` after `npm run generate`.
 
 After the first deploy:
 
-- Add your custom domain in the Pages project (**Custom domains**).
+- Add your custom domain in the Worker (**Settings → Domains & Routes**).
 - Submit `https://yourdomain.com/sitemap_index.xml` in Google Search Console.
