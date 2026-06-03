@@ -1,0 +1,8 @@
+# Cloudflare Pages project config (read by both the dashboard Git integration
+# and `wrangler pages deploy`). This is a fully static site — no Functions.
+#
+# `name` must be lowercase letters/digits/hyphens; change it to your project
+# name in the Cloudflare dashboard if different.
+name = "devtools"
+pages_build_output_dir = ".output/public"
+compatibility_date = "2025-01-01"

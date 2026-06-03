@@ -1,0 +1,53 @@
+{
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyAll": "Copy all",
+    "clear": "Clear",
+    "sample": "Sample",
+    "swap": "Swap",
+    "format": "Format / Beautify",
+    "minify": "Minify",
+    "encode": "Encode",
+    "decode": "Decode",
+    "generate": "Generate",
+    "uppercase": "Uppercase",
+    "input": "Input",
+    "output": "Output",
+    "result": "Result",
+    "options": "Options",
+    "mode": "Mode",
+    "count": "Count",
+    "characters": "characters",
+    "startHint": "Paste or type to start."
+  },
+  "tool": {
+    "home": "Home",
+    "privacy": "100% private — runs in your browser, nothing is uploaded",
+    "faqHeading": "Frequently asked questions",
+    "seeAlso": "See also"
+  },
+  "footer": {
+    "tagline": "Free, private, browser-based developer tools.",
+    "privacyNote": "All tools run client-side. Your data never leaves your device."
+  },
+  "home": {
+    "metaTitle": "Free, private, browser-based developer tools",
+    "metaDescription": "A fast, free collection of developer tools — JSON formatter, Base64, JWT decoder, cron generator and more. Everything runs in your browser; your data is never uploaded.",
+    "heroPre": "Free developer tools that",
+    "heroAccent": "just work",
+    "heroSub": "Fast, clean, ad-light utilities for everyday development. Everything runs in your browser — your data is never uploaded to a server.",
+    "badgeClientSide": "100% client-side",
+    "badgeInstant": "Instant",
+    "badgeNoSignup": "No sign-up"
+  },
+  "categories": {
+    "data": "Data & Formats",
+    "encoding": "Encoding",
+    "web-security": "Web & Security",
+    "time-ids": "Time & IDs"
+  },
+  "switcher": {
+    "label": "Language"
+  }
+}
