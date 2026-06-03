@@ -483,6 +483,126 @@ export const tools: Tool[] = [
       keywords: ['json в csv', 'csv в json', 'конвертер json csv', 'преобразовать json в csv', 'csv json', 'json2csv'],
     },
   },
+  {
+    slug: 'json-to-yaml',
+    category: 'data',
+    icon: 'Y',
+    related: ['json-formatter', 'json-to-csv', 'number-base-converter'],
+    en: {
+      name: 'JSON ↔ YAML Converter',
+      title: 'JSON to YAML Converter — Convert Both Ways Online',
+      description:
+        'Free online JSON to YAML and YAML to JSON converter. Convert configuration and data between JSON and YAML with proper formatting. Everything runs in your browser.',
+      keywords: ['json to yaml', 'yaml to json', 'json yaml converter', 'convert yaml', 'yaml parser', 'yaml formatter'],
+    },
+    ru: {
+      name: 'Конвертер JSON ↔ YAML',
+      title: 'Конвертер JSON в YAML — преобразование в обе стороны онлайн',
+      description:
+        'Бесплатный онлайн-конвертер JSON в YAML и YAML в JSON. Преобразуйте конфиги и данные между JSON и YAML с корректным форматированием. Всё работает в браузере.',
+      keywords: ['json в yaml', 'yaml в json', 'конвертер json yaml', 'преобразовать yaml', 'yaml парсер', 'форматтер yaml'],
+    },
+  },
+  {
+    slug: 'jwt-generator',
+    category: 'web-security',
+    icon: '🔏',
+    related: ['jwt-decoder', 'hash-generator', 'base64-encode-decode'],
+    en: {
+      name: 'JWT Generator',
+      title: 'JWT Generator — Create & Sign JSON Web Tokens (HS256)',
+      description:
+        'Free online JWT generator. Build a JSON Web Token from a header and payload and sign it with HS256/384/512 using your secret. Signing happens in your browser; the secret never leaves it.',
+      keywords: ['jwt generator', 'create jwt', 'sign jwt', 'generate jwt', 'jwt encoder', 'hs256 jwt'],
+    },
+    ru: {
+      name: 'Генератор JWT',
+      title: 'Генератор JWT — создание и подпись JSON Web Token (HS256)',
+      description:
+        'Бесплатный онлайн-генератор JWT. Соберите JSON Web Token из header и payload и подпишите HS256/384/512 своим секретом. Подпись считается в браузере, секрет его не покидает.',
+      keywords: ['генератор jwt', 'создать jwt', 'подписать jwt', 'сгенерировать jwt', 'jwt энкодер', 'hs256 jwt'],
+    },
+  },
+  {
+    slug: 'htpasswd-generator',
+    category: 'web-security',
+    icon: '.ht',
+    related: ['password-generator', 'hash-generator', 'jwt-generator'],
+    en: {
+      name: '.htpasswd Generator',
+      title: '.htpasswd Generator — Apache Password Hashes Online',
+      description:
+        'Free online .htpasswd generator. Create Apache/Nginx htpasswd entries with bcrypt or SHA-1 hashing for HTTP Basic Auth. Hashing runs in your browser; nothing is uploaded.',
+      keywords: ['htpasswd generator', 'htpasswd', 'apache password', 'basic auth password', 'bcrypt htpasswd', 'htpasswd online'],
+    },
+    ru: {
+      name: 'Генератор .htpasswd',
+      title: 'Генератор .htpasswd — хеши паролей Apache онлайн',
+      description:
+        'Бесплатный онлайн-генератор .htpasswd. Создавайте записи htpasswd для Apache/Nginx с хешированием bcrypt или SHA-1 для HTTP Basic Auth. Хеширование в браузере, ничего не загружается.',
+      keywords: ['генератор htpasswd', 'htpasswd', 'пароль apache', 'basic auth пароль', 'bcrypt htpasswd', 'htpasswd онлайн'],
+    },
+  },
+  {
+    slug: 'color-palette-generator',
+    category: 'data',
+    icon: '🌈',
+    related: ['color-converter', 'number-base-converter', 'json-formatter'],
+    en: {
+      name: 'Color Palette Generator',
+      title: 'Color Palette Generator — Shades, Tints & Schemes Online',
+      description:
+        'Free online color palette generator. Build shades, tints and harmonious schemes (complementary, analogous, triadic) from a base color, with copyable HEX values. Runs in your browser.',
+      keywords: ['color palette generator', 'color scheme generator', 'shades generator', 'color harmony', 'palette maker', 'hex palette'],
+    },
+    ru: {
+      name: 'Генератор палитры цветов',
+      title: 'Генератор палитры цветов — оттенки, тинты и схемы онлайн',
+      description:
+        'Бесплатный онлайн-генератор палитры цветов. Стройте оттенки, тинты и гармоничные схемы (комплементарную, аналоговую, триадную) от базового цвета, с копированием HEX. Работает в браузере.',
+      keywords: ['генератор палитры цветов', 'генератор цветовых схем', 'генератор оттенков', 'цветовая гармония', 'подбор палитры', 'hex палитра'],
+    },
+  },
+  {
+    slug: 'remove-duplicate-lines',
+    category: 'text',
+    icon: '≣',
+    related: ['text-counter', 'diff-checker', 'case-converter'],
+    en: {
+      name: 'Remove Duplicate Lines',
+      title: 'Remove Duplicate Lines — Deduplicate Text Online',
+      description:
+        'Free online duplicate line remover. Strip repeated lines from text, with options to trim, ignore case, sort and drop blank lines. Everything runs in your browser.',
+      keywords: ['remove duplicate lines', 'deduplicate text', 'delete duplicate lines', 'unique lines', 'text dedupe', 'remove repeated lines'],
+    },
+    ru: {
+      name: 'Удаление повторяющихся строк',
+      title: 'Удаление повторяющихся строк — дедупликация текста онлайн',
+      description:
+        'Бесплатный онлайн-инструмент для удаления повторяющихся строк. Убирайте дубли строк с опциями обрезки пробелов, игнора регистра, сортировки и удаления пустых строк. Всё в браузере.',
+      keywords: ['удаление повторяющихся строк', 'дедупликация текста', 'удалить дубли строк', 'уникальные строки', 'убрать повторы', 'удалить одинаковые строки'],
+    },
+  },
+  {
+    slug: 'string-escaper',
+    category: 'encoding',
+    icon: '\\',
+    related: ['html-entities', 'url-encode-decode', 'json-formatter'],
+    en: {
+      name: 'String Escaper',
+      title: 'String Escaper — Escape for Regex, SQL, JSON & More',
+      description:
+        'Free online string escaper. Escape text for regular expressions, SQL strings, JSON and backslash/C-style sequences, and unescape it back. Everything runs in your browser.',
+      keywords: ['string escape', 'regex escape', 'sql escape', 'escape string online', 'json string escape', 'unescape string'],
+    },
+    ru: {
+      name: 'Экранирование строк',
+      title: 'Экранирование строк — escape для regex, SQL, JSON и не только',
+      description:
+        'Бесплатный онлайн-инструмент экранирования строк. Экранируйте текст для регулярных выражений, SQL-строк, JSON и backslash/C-последовательностей и снимайте экранирование обратно. Всё в браузере.',
+      keywords: ['экранирование строк', 'escape regex', 'escape sql', 'экранировать строку онлайн', 'json escape', 'снять экранирование'],
+    },
+  },
 ]
 
 const bySlug = new Map(tools.map((t) => [t.slug, t]))
