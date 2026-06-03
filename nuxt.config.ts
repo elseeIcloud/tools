@@ -19,7 +19,10 @@ export default defineNuxtConfig({
 
   // Static generation (SSG). crawlLinks discovers every tool page linked
   // from the homepage, so Google receives fully-rendered HTML.
+  // `preset: 'static'` is explicit so Cloudflare's build env does NOT auto-switch
+  // Nitro to the SSR `cloudflare-module` preset — we deploy pure static assets.
   nitro: {
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       failOnError: false,
