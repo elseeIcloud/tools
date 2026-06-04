@@ -59,7 +59,9 @@
     "favorites": "Избранное",
     "recent": "Недавние",
     "allTools": "Все инструменты",
-    "categoriesHeading": "Категории инструментов"
+    "categoriesHeading": "Категории инструментов",
+    "collapse": "Свернуть",
+    "expand": "Развернуть"
   },
   "category": {
     "otherCategories": "Другие категории"
