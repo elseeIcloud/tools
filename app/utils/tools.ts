@@ -18,7 +18,7 @@ export interface ToolI18n {
   keywords: string[]
 }
 
-export type ToolCategory = 'data' | 'text' | 'encoding' | 'design' | 'web-security' | 'generators' | 'time-ids'
+export type ToolCategory = 'data' | 'text' | 'encoding' | 'design' | 'web-security' | 'reference' | 'generators' | 'time-ids'
 
 export interface Tool {
   /** URL slug, also the route path: /<slug> (ru) and /en/<slug> (en) */
@@ -39,6 +39,7 @@ export const CATEGORY_ORDER: ToolCategory[] = [
   'encoding',
   'design',
   'web-security',
+  'reference',
   'generators',
   'time-ids',
 ]
@@ -746,9 +747,9 @@ export const tools: Tool[] = [
   },
   {
     slug: 'http-status-codes',
-    category: 'web-security',
+    category: 'reference',
     icon: '⚑',
-    related: ['url-parser', 'jwt-decoder', 'ip-subnet-calculator'],
+    related: ['http-headers', 'mime-types', 'url-parser'],
     en: {
       name: 'HTTP Status Codes',
       title: 'HTTP Status Codes — Reference & Lookup (1xx–5xx)',
@@ -762,6 +763,166 @@ export const tools: Tool[] = [
       description:
         'Бесплатный справочник HTTP-кодов состояния. Ищите и просматривайте все коды (1xx–5xx) с описанием и когда их применять — быстрая шпаргалка с поиском в браузере.',
       keywords: ['http коды состояния', 'список кодов состояния', 'http 404', 'http 500', 'значение кода состояния', 'коды ответа http'],
+    },
+  },
+  {
+    slug: 'sql-formatter',
+    category: 'data',
+    icon: 'SQL',
+    related: ['json-formatter', 'xml-formatter', 'json-to-yaml'],
+    en: {
+      name: 'SQL Formatter',
+      title: 'SQL Formatter — Beautify & Format SQL Queries Online',
+      description:
+        'Free online SQL formatter and beautifier. Pretty-print messy SQL with proper indentation and keyword casing for MySQL, PostgreSQL, SQL Server, SQLite and more. Runs entirely in your browser.',
+      keywords: ['sql formatter', 'format sql', 'sql beautifier', 'pretty print sql', 'sql formatter online', 'beautify sql query'],
+    },
+    ru: {
+      name: 'Форматтер SQL',
+      title: 'Форматтер SQL — красивое форматирование SQL-запросов онлайн',
+      description:
+        'Бесплатный онлайн-форматтер SQL. Приводите запутанные запросы к читаемому виду с отступами и регистром ключевых слов для MySQL, PostgreSQL, SQL Server, SQLite и других. Всё работает в браузере.',
+      keywords: ['форматтер sql', 'форматировать sql', 'красивый sql', 'beautify sql', 'sql форматтер онлайн', 'отформатировать sql запрос'],
+    },
+  },
+  {
+    slug: 'xml-formatter',
+    category: 'data',
+    icon: 'XML',
+    related: ['json-formatter', 'sql-formatter', 'json-to-yaml'],
+    en: {
+      name: 'XML Formatter',
+      title: 'XML Formatter & Beautifier — Format and Minify XML Online',
+      description:
+        'Free online XML formatter, beautifier and validator. Indent messy XML, minify it, and catch well-formedness errors. Everything runs in your browser — nothing is uploaded.',
+      keywords: ['xml formatter', 'format xml', 'xml beautifier', 'xml validator', 'minify xml', 'pretty print xml'],
+    },
+    ru: {
+      name: 'Форматтер XML',
+      title: 'Форматтер XML — форматирование и минификация XML онлайн',
+      description:
+        'Бесплатный онлайн-форматтер, beautifier и валидатор XML. Делайте отступы в запутанном XML, сжимайте его и находите ошибки разметки. Всё работает в браузере — ничего не загружается.',
+      keywords: ['форматтер xml', 'форматировать xml', 'xml beautifier', 'валидатор xml', 'минифицировать xml', 'красивый xml'],
+    },
+  },
+  {
+    slug: 'box-shadow-generator',
+    category: 'design',
+    icon: '▢',
+    related: ['css-gradient-generator', 'color-converter', 'cubic-bezier-generator'],
+    en: {
+      name: 'Box Shadow Generator',
+      title: 'CSS Box Shadow Generator — Visual box-shadow Builder Online',
+      description:
+        'Free online CSS box-shadow generator. Build layered shadows with offset, blur, spread, color and inset, preview them live and copy the CSS. Everything runs in your browser.',
+      keywords: ['box shadow generator', 'css box shadow', 'box-shadow generator', 'shadow css', 'css shadow maker', 'box shadow css'],
+    },
+    ru: {
+      name: 'Генератор box-shadow',
+      title: 'Генератор CSS box-shadow — визуальный конструктор тени онлайн',
+      description:
+        'Бесплатный онлайн-генератор CSS box-shadow. Стройте тени со смещением, размытием, разбросом, цветом и inset, смотрите превью и копируйте CSS. Всё работает в браузере.',
+      keywords: ['генератор box shadow', 'css box shadow', 'генератор тени css', 'тень css', 'box-shadow генератор', 'css тень'],
+    },
+  },
+  {
+    slug: 'css-units-converter',
+    category: 'design',
+    icon: 'px',
+    related: ['color-converter', 'box-shadow-generator', 'number-base-converter'],
+    en: {
+      name: 'CSS Units Converter',
+      title: 'PX to REM Converter — px, rem, em & pt CSS Units Online',
+      description:
+        'Free online CSS unit converter. Convert between px, rem, em, pt and percent with a configurable root font size, in both directions. Everything runs in your browser.',
+      keywords: ['px to rem', 'rem to px', 'css unit converter', 'px to em', 'px rem converter', 'convert px to rem'],
+    },
+    ru: {
+      name: 'Конвертер единиц CSS',
+      title: 'Конвертер px в rem — единицы px, rem, em и pt онлайн',
+      description:
+        'Бесплатный онлайн-конвертер единиц CSS. Переводите между px, rem, em, pt и процентами с настраиваемым базовым размером шрифта, в обе стороны. Всё работает в браузере.',
+      keywords: ['px в rem', 'rem в px', 'конвертер единиц css', 'px в em', 'конвертер px rem', 'перевести px в rem'],
+    },
+  },
+  {
+    slug: 'cubic-bezier-generator',
+    category: 'design',
+    icon: '∿',
+    related: ['box-shadow-generator', 'css-gradient-generator', 'color-converter'],
+    en: {
+      name: 'Cubic Bezier Generator',
+      title: 'CSS Cubic Bezier Generator — Easing Curve Editor Online',
+      description:
+        'Free online cubic-bezier easing generator. Drag the curve, preview the animation and copy the CSS cubic-bezier() timing function, with common easing presets. Runs in your browser.',
+      keywords: ['cubic bezier generator', 'css easing', 'cubic-bezier', 'easing function', 'animation curve', 'cubic bezier editor'],
+    },
+    ru: {
+      name: 'Генератор cubic-bezier',
+      title: 'Генератор CSS cubic-bezier — редактор кривой плавности онлайн',
+      description:
+        'Бесплатный онлайн-генератор кривых cubic-bezier. Двигайте кривую, смотрите превью анимации и копируйте CSS-функцию cubic-bezier(), с готовыми пресетами плавности. Работает в браузере.',
+      keywords: ['генератор cubic bezier', 'css easing', 'cubic-bezier', 'функция плавности', 'кривая анимации', 'редактор cubic bezier'],
+    },
+  },
+  {
+    slug: 'mime-types',
+    category: 'reference',
+    icon: '🗂',
+    related: ['http-headers', 'http-status-codes', 'image-to-base64'],
+    en: {
+      name: 'MIME Types',
+      title: 'MIME Types List — Content-Type Reference & Lookup',
+      description:
+        'Free MIME type reference. Search common Content-Type values and file extensions (application/json, image/webp, text/csv and more) with descriptions. A fast, searchable cheat sheet in your browser.',
+      keywords: ['mime types', 'content type', 'mime type list', 'file extension mime', 'content-type reference', 'mime type lookup'],
+    },
+    ru: {
+      name: 'MIME-типы',
+      title: 'Список MIME-типов — справочник Content-Type и поиск',
+      description:
+        'Бесплатный справочник MIME-типов. Ищите распространённые значения Content-Type и расширения файлов (application/json, image/webp, text/csv и другие) с описаниями. Быстрая шпаргалка с поиском в браузере.',
+      keywords: ['mime типы', 'content type', 'список mime типов', 'mime тип файла', 'справочник content-type', 'поиск mime типа'],
+    },
+  },
+  {
+    slug: 'ascii-table',
+    category: 'reference',
+    icon: '🔤',
+    related: ['number-base-converter', 'http-headers', 'html-entities'],
+    en: {
+      name: 'ASCII Table',
+      title: 'ASCII Table — Character Codes in Dec, Hex, Oct & Binary',
+      description:
+        'Free ASCII table reference. Look up all 128 ASCII characters with their decimal, hexadecimal, octal and binary codes, plus control-character descriptions. Searchable, in your browser.',
+      keywords: ['ascii table', 'ascii codes', 'ascii chart', 'character codes', 'ascii to hex', 'ascii reference'],
+    },
+    ru: {
+      name: 'Таблица ASCII',
+      title: 'Таблица ASCII — коды символов в dec, hex, oct и binary',
+      description:
+        'Бесплатный справочник таблицы ASCII. Смотрите все 128 символов ASCII с десятичными, шестнадцатеричными, восьмеричными и двоичными кодами и описанием управляющих символов. С поиском, в браузере.',
+      keywords: ['таблица ascii', 'коды ascii', 'ascii символы', 'коды символов', 'ascii в hex', 'справочник ascii'],
+    },
+  },
+  {
+    slug: 'http-headers',
+    category: 'reference',
+    icon: '🧾',
+    related: ['http-status-codes', 'mime-types', 'url-parser'],
+    en: {
+      name: 'HTTP Headers',
+      title: 'HTTP Headers Reference — Request & Response Headers List',
+      description:
+        'Free HTTP headers reference. Search common request and response headers (Authorization, Cache-Control, Content-Type, CORS and more) with what each one does. A searchable cheat sheet in your browser.',
+      keywords: ['http headers', 'http header list', 'request headers', 'response headers', 'http headers reference', 'header meaning'],
+    },
+    ru: {
+      name: 'HTTP-заголовки',
+      title: 'Справочник HTTP-заголовков — список заголовков запроса и ответа',
+      description:
+        'Бесплатный справочник HTTP-заголовков. Ищите распространённые заголовки запроса и ответа (Authorization, Cache-Control, Content-Type, CORS и другие) с описанием их назначения. Шпаргалка с поиском в браузере.',
+      keywords: ['http заголовки', 'список http заголовков', 'заголовки запроса', 'заголовки ответа', 'справочник http заголовков', 'значение заголовка'],
     },
   },
 ]

@@ -88,6 +88,7 @@
     "encoding": "Encoding",
     "design": "Color & Design",
     "web-security": "Web & Security",
+    "reference": "Reference",
     "generators": "Generators",
     "time-ids": "Time & IDs"
   },
@@ -97,6 +98,7 @@
     "encoding": "Encode, decode and escape data safely.",
     "design": "Pick, convert and build colors, gradients and palettes.",
     "web-security": "Tokens, hashes, networking and authentication helpers.",
+    "reference": "Handy lookups: codes, types and tables to search fast.",
     "generators": "Generate codes, passwords and more.",
     "time-ids": "Work with time, schedules and identifiers."
   },
