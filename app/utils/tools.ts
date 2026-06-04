@@ -18,7 +18,7 @@ export interface ToolI18n {
   keywords: string[]
 }
 
-export type ToolCategory = 'data' | 'text' | 'encoding' | 'web-security' | 'generators' | 'time-ids'
+export type ToolCategory = 'data' | 'text' | 'encoding' | 'design' | 'web-security' | 'generators' | 'time-ids'
 
 export interface Tool {
   /** URL slug, also the route path: /<slug> (ru) and /en/<slug> (en) */
@@ -37,6 +37,7 @@ export const CATEGORY_ORDER: ToolCategory[] = [
   'data',
   'text',
   'encoding',
+  'design',
   'web-security',
   'generators',
   'time-ids',
@@ -225,7 +226,7 @@ export const tools: Tool[] = [
   },
   {
     slug: 'color-converter',
-    category: 'data',
+    category: 'design',
     icon: '🎨',
     related: ['number-base-converter', 'json-formatter', 'hash-generator'],
     en: {
@@ -545,7 +546,7 @@ export const tools: Tool[] = [
   },
   {
     slug: 'color-palette-generator',
-    category: 'data',
+    category: 'design',
     icon: '🌈',
     related: ['color-converter', 'number-base-converter', 'json-formatter'],
     en: {
@@ -601,6 +602,166 @@ export const tools: Tool[] = [
       description:
         'Бесплатный онлайн-инструмент экранирования строк. Экранируйте текст для регулярных выражений, SQL-строк, JSON и backslash/C-последовательностей и снимайте экранирование обратно. Всё в браузере.',
       keywords: ['экранирование строк', 'escape regex', 'escape sql', 'экранировать строку онлайн', 'json escape', 'снять экранирование'],
+    },
+  },
+  {
+    slug: 'regex-tester',
+    category: 'text',
+    icon: '.*',
+    related: ['string-escaper', 'text-counter', 'diff-checker'],
+    en: {
+      name: 'Regex Tester',
+      title: 'Regex Tester — Test & Debug Regular Expressions Online',
+      description:
+        'Free online regex tester. Test regular expressions against your text with live match highlighting, capture groups and flags. Everything runs in your browser.',
+      keywords: ['regex tester', 'regular expression tester', 'regex online', 'test regex', 'regex match', 'regexp tester'],
+    },
+    ru: {
+      name: 'Тестер регулярных выражений',
+      title: 'Тестер regex — проверка регулярных выражений онлайн',
+      description:
+        'Бесплатный онлайн-тестер регулярных выражений. Проверяйте regex на своём тексте с подсветкой совпадений, группами захвата и флагами. Всё работает в браузере.',
+      keywords: ['тестер regex', 'регулярные выражения онлайн', 'проверить regex', 'regex тест', 'совпадения regex', 'regexp тестер'],
+    },
+  },
+  {
+    slug: 'url-parser',
+    category: 'encoding',
+    icon: '🌐',
+    related: ['query-string-parser', 'url-encode-decode', 'base64-encode-decode'],
+    en: {
+      name: 'URL Parser',
+      title: 'URL Parser — Break a URL into Its Parts Online',
+      description:
+        'Free online URL parser. Split any URL into protocol, host, port, path, query parameters and hash, with decoded values. Everything runs in your browser.',
+      keywords: ['url parser', 'parse url', 'url components', 'url breakdown', 'url analyzer', 'url query params'],
+    },
+    ru: {
+      name: 'Парсер URL',
+      title: 'Парсер URL — разбор ссылки на части онлайн',
+      description:
+        'Бесплатный онлайн-парсер URL. Разбейте любую ссылку на протокол, хост, порт, путь, параметры запроса и якорь, с декодированными значениями. Всё работает в браузере.',
+      keywords: ['парсер url', 'разобрать url', 'компоненты url', 'разбор ссылки', 'анализ url', 'параметры url'],
+    },
+  },
+  {
+    slug: 'ip-subnet-calculator',
+    category: 'web-security',
+    icon: 'IP',
+    related: ['number-base-converter', 'http-status-codes', 'hash-generator'],
+    en: {
+      name: 'IP Subnet Calculator',
+      title: 'IP Subnet Calculator — CIDR, Mask & Range Online',
+      description:
+        'Free online IP subnet calculator. Enter an IPv4 address with CIDR to get the network, broadcast, mask, host range and host count. Everything runs in your browser.',
+      keywords: ['subnet calculator', 'ip calculator', 'cidr calculator', 'ipv4 subnet', 'network mask calculator', 'ip range'],
+    },
+    ru: {
+      name: 'Калькулятор подсетей IP',
+      title: 'Калькулятор подсетей IP — CIDR, маска и диапазон онлайн',
+      description:
+        'Бесплатный онлайн-калькулятор подсетей IP. Введите IPv4-адрес с CIDR и получите сеть, broadcast, маску, диапазон хостов и их число. Всё работает в браузере.',
+      keywords: ['калькулятор подсетей', 'ip калькулятор', 'cidr калькулятор', 'подсеть ipv4', 'маска сети', 'диапазон ip'],
+    },
+  },
+  {
+    slug: 'css-gradient-generator',
+    category: 'design',
+    icon: '▥',
+    related: ['color-converter', 'color-palette-generator', 'contrast-checker'],
+    en: {
+      name: 'CSS Gradient Generator',
+      title: 'CSS Gradient Generator — Linear & Radial Gradients Online',
+      description:
+        'Free online CSS gradient generator. Build linear and radial gradients with multiple color stops and an angle, preview live and copy the CSS. Everything runs in your browser.',
+      keywords: ['css gradient generator', 'gradient generator', 'linear gradient', 'radial gradient', 'css background gradient', 'gradient css'],
+    },
+    ru: {
+      name: 'Генератор CSS-градиентов',
+      title: 'Генератор CSS-градиентов — линейные и радиальные онлайн',
+      description:
+        'Бесплатный онлайн-генератор CSS-градиентов. Создавайте линейные и радиальные градиенты с несколькими точками цвета и углом, смотрите превью и копируйте CSS. Всё в браузере.',
+      keywords: ['генератор css градиентов', 'генератор градиентов', 'линейный градиент', 'радиальный градиент', 'css фон градиент', 'градиент css'],
+    },
+  },
+  {
+    slug: 'contrast-checker',
+    category: 'design',
+    icon: '◐',
+    related: ['color-converter', 'color-palette-generator', 'css-gradient-generator'],
+    en: {
+      name: 'Contrast Checker',
+      title: 'Color Contrast Checker — WCAG AA & AAA Online',
+      description:
+        'Free online color contrast checker. Test foreground and background colors against WCAG AA and AAA ratios for accessible text. Everything runs in your browser.',
+      keywords: ['contrast checker', 'wcag contrast', 'color contrast', 'accessibility contrast', 'contrast ratio', 'aa aaa contrast'],
+    },
+    ru: {
+      name: 'Проверка контраста',
+      title: 'Проверка контраста цветов — WCAG AA и AAA онлайн',
+      description:
+        'Бесплатный онлайн-инструмент проверки контраста. Проверяйте цвета текста и фона по нормам WCAG AA и AAA для доступности. Всё работает в браузере.',
+      keywords: ['проверка контраста', 'wcag контраст', 'контраст цветов', 'контраст доступность', 'коэффициент контраста', 'aa aaa контраст'],
+    },
+  },
+  {
+    slug: 'jwt-verifier',
+    category: 'web-security',
+    icon: '✔',
+    related: ['jwt-decoder', 'jwt-generator', 'hash-generator'],
+    en: {
+      name: 'JWT Verifier',
+      title: 'JWT Verifier — Verify JSON Web Token Signatures (HS256)',
+      description:
+        'Free online JWT verifier. Check whether a JSON Web Token HMAC signature is valid for your secret, and inspect its claims and expiry. The secret never leaves your browser.',
+      keywords: ['jwt verifier', 'verify jwt', 'jwt signature', 'validate jwt', 'check jwt', 'jwt verify online'],
+    },
+    ru: {
+      name: 'Проверка JWT',
+      title: 'Проверка JWT — валидация подписи JSON Web Token (HS256)',
+      description:
+        'Бесплатный онлайн-инструмент проверки JWT. Убедитесь, что HMAC-подпись JSON Web Token верна для вашего секрета, и просмотрите claims и срок действия. Секрет не покидает браузер.',
+      keywords: ['проверка jwt', 'валидация jwt', 'подпись jwt', 'проверить jwt', 'верификация jwt', 'jwt verify онлайн'],
+    },
+  },
+  {
+    slug: 'timezone-converter',
+    category: 'time-ids',
+    icon: '🌍',
+    related: ['unix-timestamp-converter', 'cron-generator', 'uuid-generator'],
+    en: {
+      name: 'Timezone Converter',
+      title: 'Timezone Converter — Convert Time Across Zones Online',
+      description:
+        'Free online timezone converter. Convert a date and time between time zones, see UTC offsets and compare multiple zones at once. Everything runs in your browser.',
+      keywords: ['timezone converter', 'time zone converter', 'utc converter', 'convert time zones', 'world clock', 'time difference'],
+    },
+    ru: {
+      name: 'Конвертер часовых поясов',
+      title: 'Конвертер часовых поясов — перевод времени между зонами онлайн',
+      description:
+        'Бесплатный онлайн-конвертер часовых поясов. Переводите дату и время между поясами, смотрите смещения UTC и сравнивайте несколько зон сразу. Всё работает в браузере.',
+      keywords: ['конвертер часовых поясов', 'конвертер времени', 'utc конвертер', 'перевод часовых поясов', 'мировое время', 'разница во времени'],
+    },
+  },
+  {
+    slug: 'http-status-codes',
+    category: 'web-security',
+    icon: '⚑',
+    related: ['url-parser', 'jwt-decoder', 'ip-subnet-calculator'],
+    en: {
+      name: 'HTTP Status Codes',
+      title: 'HTTP Status Codes — Reference & Lookup (1xx–5xx)',
+      description:
+        'Free HTTP status code reference. Search and browse every HTTP status code (1xx–5xx) with its meaning and when to use it — a fast, searchable cheat sheet in your browser.',
+      keywords: ['http status codes', 'status code list', 'http 404', 'http 500', 'status code meaning', 'http response codes'],
+    },
+    ru: {
+      name: 'HTTP-коды состояния',
+      title: 'HTTP-коды состояния — справочник и поиск (1xx–5xx)',
+      description:
+        'Бесплатный справочник HTTP-кодов состояния. Ищите и просматривайте все коды (1xx–5xx) с описанием и когда их применять — быстрая шпаргалка с поиском в браузере.',
+      keywords: ['http коды состояния', 'список кодов состояния', 'http 404', 'http 500', 'значение кода состояния', 'коды ответа http'],
     },
   },
 ]

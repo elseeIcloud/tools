@@ -63,6 +63,7 @@
     "data": "Data & Formats",
     "text": "Text",
     "encoding": "Encoding",
+    "design": "Color & Design",
     "web-security": "Web & Security",
     "generators": "Generators",
     "time-ids": "Time & IDs"
@@ -71,7 +72,8 @@
     "data": "Format, convert and inspect structured data.",
     "text": "Transform, compare and analyze text.",
     "encoding": "Encode, decode and escape data safely.",
-    "web-security": "Tokens, hashes and authentication helpers.",
+    "design": "Pick, convert and build colors, gradients and palettes.",
+    "web-security": "Tokens, hashes, networking and authentication helpers.",
     "generators": "Generate codes, passwords and more.",
     "time-ids": "Work with time, schedules and identifiers."
   },
