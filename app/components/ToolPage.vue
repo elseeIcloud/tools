@@ -12,6 +12,10 @@ const localePath = useLocalePath()
 // One call wires title, meta and JSON-LD for the whole page (locale-aware).
 const { meta, related } = useToolSeo(props.slug, { faq: props.faq })
 const tool = getTool(props.slug)
+
+// Track this visit for the homepage "Recent" section and the search palette.
+const { record } = useRecent()
+onMounted(() => record(props.slug))
 </script>
 
 <template>

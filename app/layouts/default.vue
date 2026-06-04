@@ -3,6 +3,14 @@ const { isDark, toggle } = useTheme()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const groups = toolsByCategory()
+const { open: openSearch } = useSearchPalette()
+
+// Platform-correct shortcut hint, resolved after mount (inside <ClientOnly>).
+const shortcutKey = ref('⌘ K')
+onMounted(() => {
+  const mac = /Mac|iPhone|iPad|iPod/.test(navigator.platform)
+  shortcutKey.value = mac ? '⌘ K' : 'Ctrl K'
+})
 
 // hreflang alternates, canonical, og:locale and <html lang> for every page.
 const i18nHead = useLocaleHead({ seo: true })
@@ -29,6 +37,25 @@ useHead({
           <span>{{ SITE_NAME }}</span>
         </NuxtLink>
         <div class="flex items-center gap-2">
+          <!-- Search trigger (full pill on desktop, icon on mobile) -->
+          <button
+            type="button"
+            class="hidden h-9 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-500 transition-colors hover:border-accent hover:text-accent dark:border-ink-700 dark:bg-ink-900 dark:text-ink-400 sm:flex"
+            @click="openSearch = true"
+          >
+            <span aria-hidden="true">🔎</span>
+            <span>{{ t('search.button') }}</span>
+            <ClientOnly>
+              <kbd class="rounded border border-ink-200 px-1.5 py-0.5 text-[10px] font-medium text-ink-400 dark:border-ink-700">{{ shortcutKey }}</kbd>
+            </ClientOnly>
+          </button>
+          <button
+            type="button"
+            class="btn-ghost !px-2.5 sm:hidden"
+            :aria-label="t('search.button')"
+            @click="openSearch = true"
+          >🔎</button>
+
           <LocaleSwitcher />
           <button
             type="button"
@@ -71,5 +98,7 @@ useHead({
         </div>
       </div>
     </footer>
+
+    <SearchPalette />
   </div>
 </template>

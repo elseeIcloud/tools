@@ -57,7 +57,18 @@
     "badgeNoSignup": "Без регистрации",
     "popular": "Популярные инструменты",
     "favorites": "Избранное",
+    "recent": "Недавние",
     "allTools": "Все инструменты"
+  },
+  "search": {
+    "button": "Поиск",
+    "placeholder": "Поиск инструментов…",
+    "recent": "Недавние",
+    "popular": "Популярные",
+    "noResults": "Ничего не найдено",
+    "hintNav": "выбрать",
+    "hintOpen": "открыть",
+    "hintClose": "закрыть"
   },
   "categories": {
     "data": "Данные и форматы",

@@ -57,7 +57,18 @@
     "badgeNoSignup": "No sign-up",
     "popular": "Popular tools",
     "favorites": "Your favorites",
+    "recent": "Recently used",
     "allTools": "All tools"
+  },
+  "search": {
+    "button": "Search",
+    "placeholder": "Search tools…",
+    "recent": "Recent",
+    "popular": "Popular",
+    "noResults": "No results",
+    "hintNav": "navigate",
+    "hintOpen": "open",
+    "hintClose": "close"
   },
   "categories": {
     "data": "Data & Formats",

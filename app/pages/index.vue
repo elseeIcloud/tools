@@ -2,11 +2,15 @@
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const groups = toolsByCategory()
-const popular = getPopular()
 
 const { favorites } = useFavorites()
 const favoriteTools = computed(() =>
   favorites.value.map((s) => getTool(s)).filter((tl): tl is NonNullable<typeof tl> => !!tl),
+)
+
+const { recent } = useRecent()
+const recentTools = computed(() =>
+  recent.value.map((s) => getTool(s)).filter((tl): tl is NonNullable<typeof tl> => !!tl),
 )
 
 const homeUrl = computed(() => SITE_URL + localePath('/'))
@@ -70,7 +74,7 @@ useHead(() => ({
       </div>
     </section>
 
-    <!-- Favorites (client-only: depends on localStorage) -->
+    <!-- Favorites + Recent (client-only: depend on localStorage) -->
     <ClientOnly>
       <section v-if="favoriteTools.length" class="container-tool pb-6">
         <h2 class="mb-4 flex items-center gap-2 text-lg font-semibold text-ink-900 dark:text-ink-100">
@@ -80,15 +84,15 @@ useHead(() => ({
           <ToolCard v-for="tool in favoriteTools" :key="tool.slug" :tool="tool" />
         </div>
       </section>
+      <section v-if="recentTools.length" class="container-tool pb-6">
+        <h2 class="mb-4 flex items-center gap-2 text-lg font-semibold text-ink-900 dark:text-ink-100">
+          <span class="text-ink-400">🕘</span> {{ t('home.recent') }}
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ToolCard v-for="tool in recentTools" :key="tool.slug" :tool="tool" />
+        </div>
+      </section>
     </ClientOnly>
-
-    <!-- Popular -->
-    <section class="container-tool pb-6">
-      <h2 class="mb-4 text-lg font-semibold text-ink-900 dark:text-ink-100">{{ t('home.popular') }}</h2>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <ToolCard v-for="tool in popular" :key="tool.slug" :tool="tool" />
-      </div>
-    </section>
 
     <!-- All tools by category -->
     <section class="container-tool pb-16">

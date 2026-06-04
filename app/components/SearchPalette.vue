@@ -1,0 +1,188 @@
+<script setup lang="ts">
+import type { Tool } from '~/utils/tools'
+
+// Command palette: fuzzy-ish tool search + global keyboard shortcuts.
+// SSG-safe — the overlay only renders client-side (ClientOnly + v-if), and the
+// global key listener is attached in onMounted, which never runs on the server.
+const { open } = useSearchPalette()
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
+const { recent } = useRecent()
+const { favorites } = useFavorites()
+
+const lc = computed(() => locale.value as 'en' | 'ru')
+const query = ref('')
+const selected = ref(0)
+const inputEl = ref<HTMLInputElement | null>(null)
+
+// Rank a tool against the query: name prefix > name substring > keyword/slug hit.
+function score(tool: Tool, q: string): number {
+  const m = tool[lc.value]
+  const name = m.name.toLowerCase()
+  const hay = [name, tool.slug, ...m.keywords].join(' ').toLowerCase()
+  if (!hay.includes(q)) return -1
+  if (name.startsWith(q)) return 3
+  if (name.includes(q)) return 2
+  return 1
+}
+
+const results = computed<Tool[]>(() => {
+  const q = query.value.trim().toLowerCase()
+  if (!q) {
+    // Empty state: recent first, then favorites, then popular as a fallback.
+    const slugs = [...new Set([...recent.value, ...favorites.value, ...POPULAR_SLUGS])]
+    return slugs.map((s) => getTool(s)).filter((tl): tl is Tool => !!tl).slice(0, 7)
+  }
+  return tools
+    .map((tl) => ({ tl, s: score(tl, q) }))
+    .filter((r) => r.s >= 0)
+    .sort((a, b) => b.s - a.s)
+    .map((r) => r.tl)
+    .slice(0, 8)
+})
+
+const heading = computed(() => {
+  if (query.value.trim()) return ''
+  return recent.value.length ? t('search.recent') : t('search.popular')
+})
+
+watch(results, () => {
+  selected.value = 0
+})
+
+watch(open, async (v) => {
+  if (!v) return
+  query.value = ''
+  selected.value = 0
+  await nextTick()
+  inputEl.value?.focus()
+})
+
+function go(slug?: string) {
+  const target = slug ?? results.value[selected.value]?.slug
+  if (!target) return
+  open.value = false
+  navigateTo(localePath(`/${target}`))
+}
+
+function isTypingTarget(el: EventTarget | null) {
+  const node = el as HTMLElement | null
+  if (!node) return false
+  const tag = node.tagName
+  return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || node.isContentEditable
+}
+
+function onKeydown(e: KeyboardEvent) {
+  const mod = e.metaKey || e.ctrlKey
+  // ⌘K / Ctrl+K toggles the palette from anywhere.
+  if (mod && e.key.toLowerCase() === 'k') {
+    e.preventDefault()
+    open.value = !open.value
+    return
+  }
+  // "/" opens it, unless the user is typing into a field.
+  if (e.key === '/' && !open.value && !mod && !isTypingTarget(e.target)) {
+    e.preventDefault()
+    open.value = true
+    return
+  }
+  if (!open.value) return
+  const len = results.value.length
+  if (e.key === 'Escape') {
+    e.preventDefault()
+    open.value = false
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault()
+    selected.value = len ? (selected.value + 1) % len : 0
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault()
+    selected.value = len ? (selected.value - 1 + len) % len : 0
+  } else if (e.key === 'Enter') {
+    e.preventDefault()
+    go()
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
+</script>
+
+<template>
+  <ClientOnly>
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-100 ease-out"
+        enter-from-class="opacity-0"
+        leave-active-class="transition duration-75 ease-in"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="open"
+          class="fixed inset-0 z-[60] flex items-start justify-center px-4 pt-[12vh]"
+        >
+          <div
+            class="absolute inset-0 bg-ink-950/40 backdrop-blur-sm"
+            @click="open = false"
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            class="relative w-full max-w-xl overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-2xl dark:border-ink-700 dark:bg-ink-900"
+          >
+            <!-- Search input -->
+            <div class="flex items-center gap-2 border-b border-ink-200 px-4 dark:border-ink-800">
+              <span class="text-ink-400" aria-hidden="true">🔎</span>
+              <input
+                ref="inputEl"
+                v-model="query"
+                type="text"
+                :placeholder="t('search.placeholder')"
+                class="h-12 w-full bg-transparent text-base outline-none placeholder:text-ink-400"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+              />
+              <kbd class="rounded border border-ink-200 px-1.5 py-0.5 text-[10px] font-medium text-ink-400 dark:border-ink-700">esc</kbd>
+            </div>
+
+            <!-- Results -->
+            <div class="max-h-[52vh] overflow-y-auto p-2">
+              <p
+                v-if="heading"
+                class="px-2 pb-1 pt-1 text-xs font-medium uppercase tracking-wide text-ink-400"
+              >
+                {{ heading }}
+              </p>
+              <ul v-if="results.length" class="space-y-0.5">
+                <li v-for="(r, i) in results" :key="r.slug">
+                  <button
+                    type="button"
+                    class="flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left"
+                    :class="i === selected ? 'bg-accent/10' : 'hover:bg-ink-100/70 dark:hover:bg-ink-800/60'"
+                    @click="go(r.slug)"
+                    @mousemove="selected = i"
+                  >
+                    <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent/10 font-mono text-sm text-accent" aria-hidden="true">{{ r.icon }}</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate font-medium" :class="i === selected ? 'text-accent' : ''">{{ r[lc].name }}</span>
+                      <span class="block truncate text-xs text-ink-400">{{ t(`categories.${r.category}`) }}</span>
+                    </span>
+                    <span v-if="i === selected" class="text-ink-300 dark:text-ink-600" aria-hidden="true">↵</span>
+                  </button>
+                </li>
+              </ul>
+              <p v-else class="px-2.5 py-6 text-center text-sm text-ink-400">{{ t('search.noResults') }}</p>
+            </div>
+
+            <!-- Hints -->
+            <div class="flex items-center gap-4 border-t border-ink-200 px-4 py-2 text-[11px] text-ink-400 dark:border-ink-800">
+              <span class="flex items-center gap-1"><kbd class="rounded bg-ink-100 px-1.5 py-0.5 dark:bg-ink-800">↑↓</kbd>{{ t('search.hintNav') }}</span>
+              <span class="flex items-center gap-1"><kbd class="rounded bg-ink-100 px-1.5 py-0.5 dark:bg-ink-800">↵</kbd>{{ t('search.hintOpen') }}</span>
+              <span class="flex items-center gap-1"><kbd class="rounded bg-ink-100 px-1.5 py-0.5 dark:bg-ink-800">esc</kbd>{{ t('search.hintClose') }}</span>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+  </ClientOnly>
+</template>
