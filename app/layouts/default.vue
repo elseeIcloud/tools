@@ -4,13 +4,8 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const groups = toolsByCategory()
 const { open: openSearch } = useSearchPalette()
-
-// Platform-correct shortcut hint, resolved after mount (inside <ClientOnly>).
-const shortcutKey = ref('⌘ K')
-onMounted(() => {
-  const mac = /Mac|iPhone|iPad|iPod/.test(navigator.platform)
-  shortcutKey.value = mac ? '⌘ K' : 'Ctrl K'
-})
+const { open: openShortcuts } = useShortcutsHelp()
+const { modKey } = usePlatform()
 
 // hreflang alternates, canonical, og:locale and <html lang> for every page.
 const i18nHead = useLocaleHead({ seo: true })
@@ -46,7 +41,7 @@ useHead({
             <span aria-hidden="true">🔎</span>
             <span>{{ t('search.button') }}</span>
             <ClientOnly>
-              <kbd class="rounded border border-ink-200 px-1.5 py-0.5 text-[10px] font-medium text-ink-400 dark:border-ink-700">{{ shortcutKey }}</kbd>
+              <kbd class="rounded border border-ink-200 px-1.5 py-0.5 text-[10px] font-medium text-ink-400 dark:border-ink-700">{{ modKey }} K</kbd>
             </ClientOnly>
           </button>
           <button
@@ -92,6 +87,7 @@ useHead({
             <nav class="flex items-center gap-4">
               <NuxtLink :to="localePath('/about')" class="hover:text-accent">{{ t('footer.about') }}</NuxtLink>
               <NuxtLink :to="localePath('/privacy')" class="hover:text-accent">{{ t('footer.privacy') }}</NuxtLink>
+              <button type="button" class="hover:text-accent" @click="openShortcuts = true">{{ t('shortcuts.title') }}</button>
             </nav>
           </div>
           <p class="mt-3 text-center text-xs text-ink-400 sm:text-left">{{ t('footer.privacyNote') }}</p>
@@ -100,5 +96,6 @@ useHead({
     </footer>
 
     <SearchPalette />
+    <ShortcutsHelp />
   </div>
 </template>

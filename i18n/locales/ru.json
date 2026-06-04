@@ -70,6 +70,18 @@
     "hintOpen": "открыть",
     "hintClose": "закрыть"
   },
+  "shortcuts": {
+    "title": "Горячие клавиши",
+    "search": "Поиск",
+    "inPalette": "В палитре поиска",
+    "general": "Общие",
+    "openSearch": "Открыть поиск",
+    "navigate": "Перемещение",
+    "openSelected": "Открыть выбранное",
+    "close": "Закрыть",
+    "showHelp": "Показать этот список",
+    "or": "или"
+  },
   "categories": {
     "data": "Данные и форматы",
     "text": "Текст",

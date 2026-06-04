@@ -70,6 +70,18 @@
     "hintOpen": "open",
     "hintClose": "close"
   },
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "search": "Search",
+    "inPalette": "In search palette",
+    "general": "General",
+    "openSearch": "Open search",
+    "navigate": "Move selection",
+    "openSelected": "Open selected",
+    "close": "Close",
+    "showHelp": "Show this list",
+    "or": "or"
+  },
   "categories": {
     "data": "Data & Formats",
     "text": "Text",
