@@ -13,6 +13,9 @@ const localePath = useLocalePath()
 const { meta, related } = useToolSeo(props.slug, { faq: props.faq })
 const tool = getTool(props.slug)
 
+// Guides that reference this tool (reverse of the guide → tools relationship).
+const guides = getGuidesForTool(props.slug)
+
 // Track this visit for the homepage "Recent" section and the search palette.
 const { record } = useRecent()
 onMounted(() => record(props.slug))
@@ -70,6 +73,25 @@ onMounted(() => record(props.slug))
           </summary>
           <p class="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">{{ item.a }}</p>
         </details>
+      </div>
+    </section>
+
+    <!-- Guides that reference this tool -->
+    <section v-if="guides.length" class="mt-12 max-w-3xl">
+      <h2 class="mb-4 text-xl font-semibold">{{ t('tool.relatedGuides') }}</h2>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <NuxtLink
+          v-for="g in guides"
+          :key="g.slug"
+          :to="localePath(`/guides/${g.slug}`)"
+          class="card flex items-start gap-3 p-3.5 transition-colors hover:border-accent"
+        >
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent/10 font-mono text-accent" aria-hidden="true">{{ g.icon }}</span>
+          <span>
+            <span class="block font-medium leading-snug">{{ g[locale].h1 }}</span>
+            <span class="mt-0.5 block text-sm text-ink-500 dark:text-ink-400">{{ g[locale].excerpt }}</span>
+          </span>
+        </NuxtLink>
       </div>
     </section>
 

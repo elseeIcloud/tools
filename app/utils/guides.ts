@@ -202,6 +202,11 @@ export function getGuideTools(slug: string): Tool[] {
   return g.tools.map((s) => getTool(s)).filter((x): x is Tool => !!x)
 }
 
+/** Reverse link: guides that reference a given tool (for tool-page cross-links). */
+export function getGuidesForTool(toolSlug: string): Guide[] {
+  return guides.filter((g) => g.tools.includes(toolSlug))
+}
+
 const MONTHS_RU = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
 const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
