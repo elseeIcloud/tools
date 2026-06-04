@@ -91,6 +91,7 @@ useHead({
             <p>{{ SITE_NAME }} — {{ t('footer.tagline') }}</p>
             <nav class="flex flex-wrap items-center gap-4">
               <NuxtLink :to="localePath('/guides')" class="hover:text-accent">{{ t('guides.nav') }}</NuxtLink>
+              <NuxtLink :to="localePath('/changelog')" class="hover:text-accent">{{ t('changelog.nav') }}</NuxtLink>
               <NuxtLink :to="localePath('/about')" class="hover:text-accent">{{ t('footer.about') }}</NuxtLink>
               <NuxtLink :to="localePath('/privacy')" class="hover:text-accent">{{ t('footer.privacy') }}</NuxtLink>
               <button type="button" class="hover:text-accent" @click="openShortcuts = true">{{ t('shortcuts.title') }}</button>

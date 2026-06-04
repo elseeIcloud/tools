@@ -78,6 +78,15 @@
     "published": "Published",
     "updated": "Updated"
   },
+  "changelog": {
+    "nav": "What's new",
+    "title": "What's New — DevTools Changelog",
+    "heading": "What's new",
+    "description": "DevTools changelog: new tools, guides and improvements. All free and running in your browser.",
+    "intro": "What we've added and improved lately.",
+    "tagNew": "New",
+    "tagImproved": "Improved"
+  },
   "search": {
     "button": "Search",
     "placeholder": "Search tools…",
