@@ -40,10 +40,14 @@ const localePath = useLocalePath()
         Сами мы эти данные не получаем и не храним.
       </p>
 
-      <h2>Аналитика и реклама</h2>
+      <h2>Аналитика</h2>
       <p>
-        Сейчас мы не используем аналитику и рекламу. Если это изменится, страница будет
-        обновлена, а используемые практики работы с данными — раскрыты до их внедрения.
+        Мы используем <strong>Cloudflare Web Analytics</strong> — приватную аналитику
+        <strong>без cookie</strong>. Она не задаёт идентификаторы, не отслеживает вас
+        между сайтами и не строит профиль: фиксируются только обезличенные агрегированные
+        показатели (просмотры страниц, тип устройства, страна, источник перехода). Это
+        никак не затрагивает данные, которые вы вставляете в инструменты, — они по-прежнему
+        не покидают браузер. Рекламы на сайте нет.
       </p>
 
       <h2>Внешние ссылки</h2>
@@ -100,10 +104,14 @@ const localePath = useLocalePath()
         Cloudflare's privacy policy. We do not receive or store this data ourselves.
       </p>
 
-      <h2>Analytics &amp; advertising</h2>
+      <h2>Analytics</h2>
       <p>
-        We do not currently use analytics or advertising. If that changes, this page
-        will be updated and any data practices disclosed before they take effect.
+        We use <strong>Cloudflare Web Analytics</strong>, a privacy-first,
+        <strong>cookieless</strong> analytics service. It sets no identifiers, does not
+        track you across sites and builds no profile — it records only anonymous,
+        aggregate metrics (page views, device type, country, referrer). This never touches
+        the data you paste into the tools, which still never leaves your browser. The site
+        shows no ads.
       </p>
 
       <h2>Third-party links</h2>

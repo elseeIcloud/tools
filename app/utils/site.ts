@@ -19,4 +19,4 @@ export const GOOGLE_SITE_VERIFICATION = '_leGWHotCX9VbTAkGGXycDQ8KphVlcB8JDju83S
 // Cloudflare Web Analytics beacon token (cookieless, privacy-friendly). From
 // the Cloudflare dashboard → Web Analytics → your site → JS snippet `token`.
 // Leave empty to inject nothing.
-export const CF_ANALYTICS_TOKEN = ''
+export const CF_ANALYTICS_TOKEN = '8c6a7d8d7b5a4ddf98bedb852f6f1b64'
