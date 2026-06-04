@@ -2,6 +2,7 @@
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const groups = toolsByCategory()
+const categories = groups.map((g) => g.category)
 
 const { favorites } = useFavorites()
 const favoriteTools = computed(() =>
@@ -44,11 +45,11 @@ useHead(() => ({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        itemListElement: tools.map((tool, i) => ({
+        itemListElement: categories.map((c, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          name: tool[locale.value as 'en' | 'ru'].name,
-          url: SITE_URL + localePath(`/${tool.slug}`),
+          name: t(`categories.${c}`),
+          url: SITE_URL + localePath(`/category/${c}`),
         })),
       }),
     },
@@ -94,15 +95,11 @@ useHead(() => ({
       </section>
     </ClientOnly>
 
-    <!-- All tools by category -->
+    <!-- Browse by category -->
     <section class="container-tool pb-16">
-      <h2 class="mb-6 mt-4 border-t border-ink-200 pt-8 text-lg font-semibold text-ink-900 dark:border-ink-800 dark:text-ink-100">{{ t('home.allTools') }}</h2>
-      <div v-for="g in groups" :key="g.category" class="mb-10">
-        <h3 class="text-base font-semibold text-ink-900 dark:text-ink-100">{{ t(`categories.${g.category}`) }}</h3>
-        <p class="mb-4 mt-1 text-sm text-ink-500 dark:text-ink-400">{{ t(`categoryDesc.${g.category}`) }}</p>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <ToolCard v-for="tool in g.items" :key="tool.slug" :tool="tool" />
-        </div>
+      <h2 class="mb-6 mt-4 border-t border-ink-200 pt-8 text-lg font-semibold text-ink-900 dark:border-ink-800 dark:text-ink-100">{{ t('home.categoriesHeading') }}</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <CategoryCard v-for="c in categories" :key="c" :category="c" />
       </div>
     </section>
   </div>

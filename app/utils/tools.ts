@@ -1182,3 +1182,138 @@ export const POPULAR_SLUGS = [
 export function getPopular(): Tool[] {
   return POPULAR_SLUGS.map((s) => bySlug.get(s)).filter((t): t is Tool => !!t)
 }
+
+// --- Categories: icons, SEO copy and helpers (drive the homepage overview and
+// the /category/<slug> landing pages). Category display name + short blurb stay
+// in i18n (categories.* / categoryDesc.*); the SEO title/description live here. ---
+
+export const CATEGORY_ICON: Record<ToolCategory, string> = {
+  data: '🗄️',
+  text: '📝',
+  encoding: '🔣',
+  design: '🎨',
+  image: '🖼️',
+  'web-security': '🔐',
+  reference: '📚',
+  generators: '⚙️',
+  'time-ids': '🕒',
+}
+
+export interface CategoryMetaI18n {
+  /** SEO <title> for the category landing page (without the site-name suffix) */
+  title: string
+  /** Meta description for the category landing page */
+  description: string
+}
+
+export const CATEGORY_META: Record<ToolCategory, { en: CategoryMetaI18n; ru: CategoryMetaI18n }> = {
+  data: {
+    en: {
+      title: 'JSON & Data Tools — Format, Convert & Inspect Online',
+      description: 'Free online data tools: JSON formatter, JSON↔CSV and JSON↔YAML converters, JSON to TypeScript, SQL and XML formatters and a number base converter. Everything runs in your browser.',
+    },
+    ru: {
+      title: 'Инструменты для данных — форматирование и конвертация онлайн',
+      description: 'Бесплатные инструменты для данных: форматтер JSON, конвертеры JSON↔CSV и JSON↔YAML, JSON в TypeScript, форматтеры SQL и XML, конвертер систем счисления. Всё работает в браузере.',
+    },
+  },
+  text: {
+    en: {
+      title: 'Text Tools — Compare, Transform & Analyze Text Online',
+      description: 'Free online text tools: diff checker, case converter, text counter, slug and lorem ipsum generators, regex tester, line sorter, Markdown tools and more. Runs entirely in your browser.',
+    },
+    ru: {
+      title: 'Инструменты для текста — сравнение, преобразование и анализ',
+      description: 'Бесплатные инструменты для текста: diff-чекер, конвертер регистра, счётчик, генераторы slug и lorem ipsum, тестер regex, сортировка строк, Markdown и другое. Всё в браузере.',
+    },
+  },
+  encoding: {
+    en: {
+      title: 'Encoding & Escaping Tools — Base64, URL, HTML & More',
+      description: 'Free online encoding tools: Base64, URL and HTML entity encode/decode, query-string and URL parsers, hex and binary converters and string escaping. All client-side.',
+    },
+    ru: {
+      title: 'Кодирование и экранирование — Base64, URL, HTML и не только',
+      description: 'Бесплатные инструменты кодирования: Base64, URL и HTML-сущности, парсеры query-строк и URL, конвертеры hex и binary, экранирование строк. Всё работает в браузере.',
+    },
+  },
+  design: {
+    en: {
+      title: 'Color & Design Tools — Convert, Pick & Generate CSS',
+      description: 'Free online color and CSS tools: color converter, palette and gradient generators, contrast checker, box-shadow, cubic-bezier and a CSS unit converter. Runs in your browser.',
+    },
+    ru: {
+      title: 'Цвет и дизайн — конвертация, подбор и генерация CSS',
+      description: 'Бесплатные инструменты для цвета и CSS: конвертер цветов, генераторы палитр и градиентов, проверка контраста, box-shadow, cubic-bezier и конвертер единиц. Всё в браузере.',
+    },
+  },
+  image: {
+    en: {
+      title: 'Image Tools — Compress, Resize & Convert in Your Browser',
+      description: 'Free online image tools: compress JPG, PNG and WebP, resize images, convert between formats and encode to Base64. Images are processed locally and never uploaded.',
+    },
+    ru: {
+      title: 'Инструменты для изображений — сжатие, ресайз и конвертация',
+      description: 'Бесплатные инструменты для картинок: сжатие JPG, PNG и WebP, ресайз, конвертация форматов и кодирование в Base64. Картинки обрабатываются локально и не загружаются.',
+    },
+  },
+  'web-security': {
+    en: {
+      title: 'Web & Security Tools — JWT, Hashes, Permissions & Network',
+      description: 'Free online web and security tools: JWT decode, verify and generate, hash generator, .htpasswd, chmod calculator and IP subnet calculator. Everything runs in your browser.',
+    },
+    ru: {
+      title: 'Веб и безопасность — JWT, хеши, права и сеть',
+      description: 'Бесплатные инструменты для веба и безопасности: JWT (декодирование, проверка, генерация), хеши, .htpasswd, chmod-калькулятор и калькулятор подсетей IP. Всё в браузере.',
+    },
+  },
+  reference: {
+    en: {
+      title: 'Developer Reference — HTTP Codes, Headers, MIME & ASCII',
+      description: 'Free, searchable developer reference: HTTP status codes, HTTP headers, MIME types and an ASCII table. Fast cheat sheets that work entirely in your browser.',
+    },
+    ru: {
+      title: 'Справочники разработчика — HTTP-коды, заголовки, MIME и ASCII',
+      description: 'Бесплатные справочники с поиском: HTTP-коды состояния, HTTP-заголовки, MIME-типы и таблица ASCII. Быстрые шпаргалки прямо в браузере.',
+    },
+  },
+  generators: {
+    en: {
+      title: 'Generators — QR Codes, Passwords & .gitignore',
+      description: 'Free online generators: QR codes, strong random passwords and ready-made .gitignore files. Everything is generated locally in your browser.',
+    },
+    ru: {
+      title: 'Генераторы — QR-коды, пароли и .gitignore',
+      description: 'Бесплатные онлайн-генераторы: QR-коды, надёжные случайные пароли и готовые файлы .gitignore. Всё генерируется локально в браузере.',
+    },
+  },
+  'time-ids': {
+    en: {
+      title: 'Time & ID Tools — Timestamps, Cron, UUID & Dates',
+      description: 'Free online time and identifier tools: Unix timestamp and timezone converters, cron expression generator, UUID generator and a date difference calculator. Runs in your browser.',
+    },
+    ru: {
+      title: 'Время и идентификаторы — timestamp, cron, UUID и даты',
+      description: 'Бесплатные инструменты для времени и ID: конвертеры Unix timestamp и часовых поясов, генератор cron, генератор UUID и калькулятор разницы дат. Всё в браузере.',
+    },
+  },
+}
+
+export function isToolCategory(s: string): s is ToolCategory {
+  return (CATEGORY_ORDER as string[]).includes(s)
+}
+
+export function getToolsInCategory(category: ToolCategory): Tool[] {
+  return tools.filter((t) => t.category === category)
+}
+
+/** Localized "N tools" with correct Russian plural form. */
+export function toolCountLabel(n: number, locale: 'en' | 'ru'): string {
+  if (locale !== 'ru') return `${n} ${n === 1 ? 'tool' : 'tools'}`
+  const m10 = n % 10
+  const m100 = n % 100
+  let word = 'инструментов'
+  if (m10 === 1 && m100 !== 11) word = 'инструмент'
+  else if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) word = 'инструмента'
+  return `${n} ${word}`
+}

@@ -58,7 +58,11 @@
     "popular": "Popular tools",
     "favorites": "Your favorites",
     "recent": "Recently used",
-    "allTools": "All tools"
+    "allTools": "All tools",
+    "categoriesHeading": "Tool categories"
+  },
+  "category": {
+    "otherCategories": "Other categories"
   },
   "guides": {
     "nav": "Guides",

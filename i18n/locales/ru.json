@@ -58,7 +58,11 @@
     "popular": "Популярные инструменты",
     "favorites": "Избранное",
     "recent": "Недавние",
-    "allTools": "Все инструменты"
+    "allTools": "Все инструменты",
+    "categoriesHeading": "Категории инструментов"
+  },
+  "category": {
+    "otherCategories": "Другие категории"
   },
   "guides": {
     "nav": "Гайды",
