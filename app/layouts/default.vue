@@ -27,10 +27,15 @@ useHead({
   <div class="flex min-h-screen flex-col">
     <header class="sticky top-0 z-40 border-b border-ink-200 bg-ink-50/85 backdrop-blur dark:border-ink-800 dark:bg-ink-950/85">
       <div class="container-tool flex h-14 items-center justify-between">
-        <NuxtLink :to="localePath('/')" class="flex items-center gap-2 font-bold tracking-tight">
-          <span class="grid h-7 w-7 place-items-center rounded-lg bg-accent font-mono text-sm text-white">&lt;/&gt;</span>
-          <span>{{ SITE_NAME }}</span>
-        </NuxtLink>
+        <div class="flex items-center gap-5">
+          <NuxtLink :to="localePath('/')" class="flex items-center gap-2 font-bold tracking-tight">
+            <span class="grid h-7 w-7 place-items-center rounded-lg bg-accent font-mono text-sm text-white">&lt;/&gt;</span>
+            <span>{{ SITE_NAME }}</span>
+          </NuxtLink>
+          <nav class="hidden sm:flex">
+            <NuxtLink :to="localePath('/guides')" class="text-sm font-medium text-ink-600 transition-colors hover:text-accent dark:text-ink-300">{{ t('guides.nav') }}</NuxtLink>
+          </nav>
+        </div>
         <div class="flex items-center gap-2">
           <!-- Search trigger (full pill on desktop, icon on mobile) -->
           <button
@@ -84,7 +89,8 @@ useHead({
         <div class="mt-10 border-t border-ink-200 pt-6 dark:border-ink-800">
           <div class="flex flex-col items-center justify-between gap-3 text-sm text-ink-500 dark:text-ink-400 sm:flex-row">
             <p>{{ SITE_NAME }} — {{ t('footer.tagline') }}</p>
-            <nav class="flex items-center gap-4">
+            <nav class="flex flex-wrap items-center gap-4">
+              <NuxtLink :to="localePath('/guides')" class="hover:text-accent">{{ t('guides.nav') }}</NuxtLink>
               <NuxtLink :to="localePath('/about')" class="hover:text-accent">{{ t('footer.about') }}</NuxtLink>
               <NuxtLink :to="localePath('/privacy')" class="hover:text-accent">{{ t('footer.privacy') }}</NuxtLink>
               <button type="button" class="hover:text-accent" @click="openShortcuts = true">{{ t('shortcuts.title') }}</button>

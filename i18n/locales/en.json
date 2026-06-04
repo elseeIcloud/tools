@@ -60,6 +60,17 @@
     "recent": "Recently used",
     "allTools": "All tools"
   },
+  "guides": {
+    "nav": "Guides",
+    "heading": "Guides",
+    "title": "Developer Guides — JWT, cron, Base64, UUID and more",
+    "metaDescription": "Practical developer guides: how to decode a JWT, cron syntax, what Base64 is, UUID v4 vs v7 and more. Short, example-driven, with links to free online tools.",
+    "subtitle": "Short, practical how-tos with examples — and links to the tools so you can try them right away.",
+    "toolsInGuide": "Tools in this guide",
+    "moreGuides": "More guides",
+    "published": "Published",
+    "updated": "Updated"
+  },
   "search": {
     "button": "Search",
     "placeholder": "Search tools…",
