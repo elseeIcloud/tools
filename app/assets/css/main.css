@@ -5,6 +5,10 @@
 @layer base {
   :root {
     color-scheme: light dark;
+    /* Accent as RGB channels so Tailwind opacity modifiers (accent/10) work.
+       Overridable per-user via the accent picker (see useAccent). */
+    --accent: 91 140 255;
+    --accent-hover: 61 116 255;
   }
 
   html {

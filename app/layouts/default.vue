@@ -57,6 +57,7 @@ useHead({
           >🔎</button>
 
           <LocaleSwitcher />
+          <AccentPicker />
           <button
             type="button"
             class="btn-ghost !px-2.5"

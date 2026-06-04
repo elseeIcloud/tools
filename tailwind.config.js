@@ -22,9 +22,9 @@ export default {
           950: '#0b1020',
         },
         accent: {
-          DEFAULT: '#5b8cff',
-          soft: '#7da5ff',
-          hover: '#3d74ff',
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          soft: 'rgb(var(--accent) / <alpha-value>)',
+          hover: 'rgb(var(--accent-hover) / <alpha-value>)',
         },
       },
       fontFamily: {

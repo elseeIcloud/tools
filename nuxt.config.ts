@@ -99,7 +99,7 @@ export default defineNuxtConfig({
       script: [
         {
           innerHTML:
-            "(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})()",
+            "(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');var a=localStorage.getItem('devtools:accent');if(a){a=JSON.parse(a);if(a&&a.accent){var s=document.documentElement.style;s.setProperty('--accent',a.accent);s.setProperty('--accent-hover',a.hover)}}}catch(e){}})()",
           tagPosition: 'head',
         },
         // Cloudflare Web Analytics beacon — cookieless, loaded only when a token
