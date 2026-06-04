@@ -18,7 +18,7 @@ export interface ToolI18n {
   keywords: string[]
 }
 
-export type ToolCategory = 'data' | 'text' | 'encoding' | 'design' | 'web-security' | 'reference' | 'generators' | 'time-ids'
+export type ToolCategory = 'data' | 'text' | 'encoding' | 'design' | 'image' | 'web-security' | 'reference' | 'generators' | 'time-ids'
 
 export interface Tool {
   /** URL slug, also the route path: /<slug> (ru) and /en/<slug> (en) */
@@ -38,6 +38,7 @@ export const CATEGORY_ORDER: ToolCategory[] = [
   'text',
   'encoding',
   'design',
+  'image',
   'web-security',
   'reference',
   'generators',
@@ -447,9 +448,9 @@ export const tools: Tool[] = [
   },
   {
     slug: 'image-to-base64',
-    category: 'encoding',
+    category: 'image',
     icon: '🖼',
-    related: ['base64-encode-decode', 'url-encode-decode', 'color-converter'],
+    related: ['image-compressor', 'image-format-converter', 'base64-encode-decode'],
     en: {
       name: 'Image to Base64',
       title: 'Image to Base64 — Convert Images to a Data URI Online',
@@ -923,6 +924,226 @@ export const tools: Tool[] = [
       description:
         'Бесплатный справочник HTTP-заголовков. Ищите распространённые заголовки запроса и ответа (Authorization, Cache-Control, Content-Type, CORS и другие) с описанием их назначения. Шпаргалка с поиском в браузере.',
       keywords: ['http заголовки', 'список http заголовков', 'заголовки запроса', 'заголовки ответа', 'справочник http заголовков', 'значение заголовка'],
+    },
+  },
+  {
+    slug: 'json-to-typescript',
+    category: 'data',
+    icon: 'TS',
+    related: ['json-formatter', 'json-to-yaml', 'json-to-csv'],
+    en: {
+      name: 'JSON to TypeScript',
+      title: 'JSON to TypeScript — Generate Interfaces & Types Online',
+      description:
+        'Free online JSON to TypeScript converter. Turn any JSON object into TypeScript interfaces or types, with nested objects, arrays and optional fields inferred. Runs in your browser.',
+      keywords: ['json to typescript', 'json to ts', 'generate typescript interface', 'json to interface', 'ts type from json', 'typescript from json'],
+    },
+    ru: {
+      name: 'JSON → TypeScript',
+      title: 'JSON в TypeScript — генерация интерфейсов и типов онлайн',
+      description:
+        'Бесплатный онлайн-конвертер JSON в TypeScript. Превращайте JSON-объект в интерфейсы или типы TypeScript с выводом вложенных объектов, массивов и необязательных полей. Работает в браузере.',
+      keywords: ['json в typescript', 'json to ts', 'генерация интерфейса typescript', 'json в интерфейс', 'тип ts из json', 'typescript из json'],
+    },
+  },
+  {
+    slug: 'date-difference-calculator',
+    category: 'time-ids',
+    icon: '📅',
+    related: ['unix-timestamp-converter', 'timezone-converter', 'cron-generator'],
+    en: {
+      name: 'Date Difference Calculator',
+      title: 'Date Difference Calculator — Days Between Two Dates',
+      description:
+        'Free online date difference calculator. Find the number of days, weeks, months and years between two dates, with or without counting the end day. Runs in your browser.',
+      keywords: ['date difference calculator', 'days between dates', 'date duration', 'days calculator', 'time between dates', 'date diff'],
+    },
+    ru: {
+      name: 'Калькулятор дат',
+      title: 'Калькулятор разницы дат — сколько дней между датами',
+      description:
+        'Бесплатный онлайн-калькулятор разницы дат. Узнайте число дней, недель, месяцев и лет между двумя датами, с учётом или без учёта последнего дня. Работает в браузере.',
+      keywords: ['калькулятор дат', 'сколько дней между датами', 'разница дат', 'калькулятор дней', 'время между датами', 'дней до даты'],
+    },
+  },
+  {
+    slug: 'chmod-calculator',
+    category: 'web-security',
+    icon: 'rwx',
+    related: ['htpasswd-generator', 'number-base-converter', 'hash-generator'],
+    en: {
+      name: 'Chmod Calculator',
+      title: 'Chmod Calculator — Unix File Permissions (rwx ↔ octal)',
+      description:
+        'Free online chmod calculator. Convert Unix file permissions between rwx checkboxes and octal (e.g. 755, 644) for owner, group and others, with the ready chmod command. Runs in your browser.',
+      keywords: ['chmod calculator', 'file permissions', 'chmod 755', 'rwx to octal', 'unix permissions', 'chmod command'],
+    },
+    ru: {
+      name: 'Chmod-калькулятор',
+      title: 'Chmod-калькулятор — права доступа Unix (rwx ↔ восьмеричные)',
+      description:
+        'Бесплатный онлайн chmod-калькулятор. Переводите права доступа Unix между галочками rwx и восьмеричной записью (755, 644) для владельца, группы и остальных, с готовой командой chmod. Работает в браузере.',
+      keywords: ['chmod калькулятор', 'права доступа', 'chmod 755', 'rwx в восьмеричную', 'права unix', 'команда chmod'],
+    },
+  },
+  {
+    slug: 'gitignore-generator',
+    category: 'generators',
+    icon: '.gi',
+    related: ['password-generator', 'qr-code-generator', 'htpasswd-generator'],
+    en: {
+      name: '.gitignore Generator',
+      title: '.gitignore Generator — Templates for Node, Python & More',
+      description:
+        'Free online .gitignore generator. Combine ready-made templates for Node, Python, Java, Go, Rust, macOS, Windows, editors and more into one .gitignore file. Runs in your browser.',
+      keywords: ['gitignore generator', 'gitignore template', 'node gitignore', 'python gitignore', 'create gitignore', 'gitignore file'],
+    },
+    ru: {
+      name: 'Генератор .gitignore',
+      title: 'Генератор .gitignore — шаблоны для Node, Python и не только',
+      description:
+        'Бесплатный онлайн-генератор .gitignore. Соберите один файл .gitignore из готовых шаблонов для Node, Python, Java, Go, Rust, macOS, Windows, редакторов и другого. Работает в браузере.',
+      keywords: ['генератор gitignore', 'шаблон gitignore', 'gitignore node', 'gitignore python', 'создать gitignore', 'файл gitignore'],
+    },
+  },
+  {
+    slug: 'hex-to-text',
+    category: 'encoding',
+    icon: 'Hx',
+    related: ['ascii-table', 'base64-encode-decode', 'text-to-binary'],
+    en: {
+      name: 'Hex to Text',
+      title: 'Hex to Text Converter — Hex ↔ ASCII/UTF-8 Online',
+      description:
+        'Free online hex to text converter. Convert hexadecimal to readable text and text to hex, with full UTF-8 support and optional byte spacing. Everything runs in your browser.',
+      keywords: ['hex to text', 'text to hex', 'hex to ascii', 'hex converter', 'hexadecimal to text', 'ascii to hex'],
+    },
+    ru: {
+      name: 'Hex в текст',
+      title: 'Конвертер Hex в текст — hex ↔ ASCII/UTF-8 онлайн',
+      description:
+        'Бесплатный онлайн-конвертер hex в текст. Переводите шестнадцатеричный код в читаемый текст и обратно, с полной поддержкой UTF-8 и настройкой пробелов между байтами. Всё в браузере.',
+      keywords: ['hex в текст', 'текст в hex', 'hex в ascii', 'конвертер hex', 'шестнадцатеричный в текст', 'ascii в hex'],
+    },
+  },
+  {
+    slug: 'text-to-binary',
+    category: 'encoding',
+    icon: '01',
+    related: ['hex-to-text', 'ascii-table', 'number-base-converter'],
+    en: {
+      name: 'Text to Binary',
+      title: 'Text to Binary Converter — Binary ↔ Text Online',
+      description:
+        'Free online text to binary converter. Convert text to 8-bit binary and binary back to text, with full UTF-8 support. Everything runs in your browser.',
+      keywords: ['text to binary', 'binary to text', 'text to binary code', 'binary translator', 'convert text binary', 'ascii to binary'],
+    },
+    ru: {
+      name: 'Текст в binary',
+      title: 'Конвертер текста в двоичный код — binary ↔ текст онлайн',
+      description:
+        'Бесплатный онлайн-конвертер текста в двоичный код. Переводите текст в 8-битный binary и обратно, с полной поддержкой UTF-8. Всё работает в браузере.',
+      keywords: ['текст в двоичный код', 'двоичный в текст', 'текст в binary', 'двоичный переводчик', 'перевести текст в binary', 'ascii в двоичный'],
+    },
+  },
+  {
+    slug: 'sort-lines',
+    category: 'text',
+    icon: '⇅',
+    related: ['remove-duplicate-lines', 'text-counter', 'case-converter'],
+    en: {
+      name: 'Sort Lines',
+      title: 'Sort Lines — Alphabetize & Sort Text Online',
+      description:
+        'Free online line sorter. Sort lines alphabetically, numerically or by length, ascending or descending, with reverse, case-insensitive and remove-duplicates options. Runs in your browser.',
+      keywords: ['sort lines', 'alphabetize list', 'sort text online', 'line sorter', 'sort alphabetically', 'order lines'],
+    },
+    ru: {
+      name: 'Сортировка строк',
+      title: 'Сортировка строк — упорядочить текст по алфавиту онлайн',
+      description:
+        'Бесплатный онлайн-сортировщик строк. Сортируйте строки по алфавиту, числам или длине, по возрастанию и убыванию, с реверсом, игнором регистра и удалением дублей. Работает в браузере.',
+      keywords: ['сортировка строк', 'сортировка по алфавиту', 'упорядочить текст', 'сортировщик строк', 'сортировать строки', 'по алфавиту онлайн'],
+    },
+  },
+  {
+    slug: 'markdown-table-generator',
+    category: 'text',
+    icon: '⊞',
+    related: ['markdown-preview', 'json-to-csv', 'diff-checker'],
+    en: {
+      name: 'Markdown Table Generator',
+      title: 'Markdown Table Generator — Build Tables from a Grid',
+      description:
+        'Free online Markdown table generator. Edit cells in a grid, set column alignment, and copy clean Markdown table syntax. You can also paste CSV or TSV. Runs in your browser.',
+      keywords: ['markdown table generator', 'markdown table', 'create markdown table', 'md table', 'table to markdown', 'markdown table maker'],
+    },
+    ru: {
+      name: 'Генератор Markdown-таблиц',
+      title: 'Генератор Markdown-таблиц — таблицы из сетки онлайн',
+      description:
+        'Бесплатный онлайн-генератор Markdown-таблиц. Заполняйте ячейки в сетке, задавайте выравнивание колонок и копируйте готовый синтаксис Markdown-таблицы. Можно вставить CSV или TSV. Работает в браузере.',
+      keywords: ['генератор markdown таблиц', 'markdown таблица', 'создать markdown таблицу', 'md таблица', 'таблица в markdown', 'сделать таблицу markdown'],
+    },
+  },
+  {
+    slug: 'image-compressor',
+    category: 'image',
+    icon: '🗜',
+    related: ['image-resizer', 'image-format-converter', 'image-to-base64'],
+    en: {
+      name: 'Image Compressor',
+      title: 'Image Compressor — Compress JPG, PNG & WebP Online',
+      description:
+        'Free online image compressor. Shrink JPG, PNG and WebP file size with an adjustable quality slider and compare the before/after size. Images are processed in your browser, never uploaded.',
+      keywords: ['image compressor', 'compress image', 'compress jpeg', 'compress png', 'reduce image size', 'optimize image'],
+    },
+    ru: {
+      name: 'Сжатие изображений',
+      title: 'Сжатие изображений — уменьшить JPG, PNG и WebP онлайн',
+      description:
+        'Бесплатный онлайн-компрессор изображений. Уменьшайте размер JPG, PNG и WebP ползунком качества и сравнивайте размер до и после. Картинки обрабатываются в браузере и не загружаются на сервер.',
+      keywords: ['сжатие изображений', 'сжать картинку', 'сжать jpeg', 'сжать png', 'уменьшить размер изображения', 'оптимизировать изображение'],
+    },
+  },
+  {
+    slug: 'image-resizer',
+    category: 'image',
+    icon: '⤢',
+    related: ['image-compressor', 'image-format-converter', 'image-to-base64'],
+    en: {
+      name: 'Image Resizer',
+      title: 'Image Resizer — Resize Images Online (Free)',
+      description:
+        'Free online image resizer. Change image width and height in pixels or percent, keep or unlock the aspect ratio, and download the result. Images never leave your browser.',
+      keywords: ['image resizer', 'resize image', 'resize photo', 'change image size', 'image dimensions', 'scale image'],
+    },
+    ru: {
+      name: 'Ресайз изображений',
+      title: 'Ресайз изображений — изменить размер картинки онлайн',
+      description:
+        'Бесплатный онлайн-ресайз изображений. Меняйте ширину и высоту в пикселях или процентах, сохраняйте или отключайте пропорции и скачивайте результат. Картинки не покидают браузер.',
+      keywords: ['ресайз изображений', 'изменить размер картинки', 'изменить размер фото', 'размер изображения', 'масштабировать картинку', 'уменьшить картинку'],
+    },
+  },
+  {
+    slug: 'image-format-converter',
+    category: 'image',
+    icon: '🔄',
+    related: ['image-compressor', 'image-resizer', 'image-to-base64'],
+    en: {
+      name: 'Image Format Converter',
+      title: 'Image Converter — PNG, JPG & WebP Online',
+      description:
+        'Free online image format converter. Convert images between PNG, JPG and WebP with a quality option, right in your browser — nothing is uploaded.',
+      keywords: ['image converter', 'png to jpg', 'jpg to webp', 'png to webp', 'convert image format', 'webp converter'],
+    },
+    ru: {
+      name: 'Конвертер форматов изображений',
+      title: 'Конвертер изображений — PNG, JPG и WebP онлайн',
+      description:
+        'Бесплатный онлайн-конвертер форматов изображений. Конвертируйте картинки между PNG, JPG и WebP с настройкой качества — прямо в браузере, без загрузки на сервер.',
+      keywords: ['конвертер изображений', 'png в jpg', 'jpg в webp', 'png в webp', 'конвертировать формат изображения', 'webp конвертер'],
     },
   },
 ]
