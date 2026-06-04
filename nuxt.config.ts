@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { SITE_URL, SITE_NAME } from './app/utils/site'
+import { SITE_URL, SITE_NAME, GOOGLE_SITE_VERIFICATION, CF_ANALYTICS_TOKEN } from './app/utils/site'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
@@ -37,6 +37,10 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'theme-color', content: '#0b1020' },
+        // Google Search Console ownership verification (only when configured).
+        ...(GOOGLE_SITE_VERIFICATION
+          ? [{ name: 'google-site-verification', content: GOOGLE_SITE_VERIFICATION }]
+          : []),
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
       // Apply saved/preferred theme before paint to avoid a flash of light mode.
@@ -46,6 +50,17 @@ export default defineNuxtConfig({
             "(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})()",
           tagPosition: 'head',
         },
+        // Cloudflare Web Analytics beacon — cookieless, loaded only when a token
+        // is set. Tool data still never leaves the browser; this only records
+        // aggregate page views.
+        ...(CF_ANALYTICS_TOKEN
+          ? [{
+              src: 'https://static.cloudflareinsights.com/beacon.min.js',
+              defer: true,
+              'data-cf-beacon': JSON.stringify({ token: CF_ANALYTICS_TOKEN }),
+              tagPosition: 'bodyClose' as const,
+            }]
+          : []),
       ],
     },
   },
