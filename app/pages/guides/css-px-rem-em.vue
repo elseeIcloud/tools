@@ -86,8 +86,12 @@ const faq = computed(() => (locale.value === 'ru' ? faqRu : faqEn))
       </p>
       <ul>
         <li><code>12px = 0.75rem</code></li>
+        <li><code>14px = 0.875rem</code></li>
         <li><code>16px = 1rem</code></li>
+        <li><code>18px = 1.125rem</code></li>
+        <li><code>20px = 1.25rem</code></li>
         <li><code>24px = 1.5rem</code></li>
+        <li><code>32px = 2rem</code></li>
       </ul>
       <p>
         Важно, что <code>rem</code> всегда смотрит только на корень — он не зависит от
@@ -130,6 +134,49 @@ const faq = computed(() => (locale.value === 'ru' ? faqRu : faqEn))
         <code>16px</code> так и останется мелким для человека, которому нужен крупнее.
         Поэтому для доступного интерфейса размеры шрифтов и отступы задают в
         <code>rem</code>, а не в <code>px</code>.
+      </p>
+
+      <h2>Единицы в медиазапросах</h2>
+      <p>
+        В <code>@media</code> ширины тоже стоит задавать в <code>em</code> (или
+        <code>rem</code>), а не в <code>px</code>. Важная деталь: в медиазапросах
+        <code>em</code> всегда считается от <strong>размера шрифта по умолчанию в
+        браузере</strong> (обычно 16px), а не от вашего <code>font-size</code> на
+        <code>&lt;html&gt;</code>. Поэтому брейкпоинт <code>40em</code> ≈ 640px при
+        стандартных настройках, но если пользователь увеличит шрифт, брейкпоинт
+        сместится вместе с ним — и переключение макета произойдёт на ширине,
+        соответствующей его комфортному размеру чтения. Брейкпоинты в <code>px</code>
+        фиксированы и при крупном шрифте могут оставлять узкие колонки с нечитаемо
+        большим текстом.
+      </p>
+      <pre><code>/* надёжно: подстраивается под размер шрифта пользователя */
+@media (min-width: 40em) { /* около 640px при базовых 16px */ }
+
+/* фиксировано: не реагирует на настройку шрифта */
+@media (min-width: 640px) { /* ... */ }</code></pre>
+
+      <h2>Типографика: rem для размера, безразмерный line-height</h2>
+      <p>
+        Хорошее правило — задавать <code>font-size</code> в <code>rem</code>, а
+        <code>line-height</code> делать <strong>безразмерным</strong>:
+        <code>line-height: 1.5</code>. Число без единицы трактуется как множитель от
+        собственного размера шрифта элемента и корректно наследуется, тогда как
+        <code>line-height: 24px</code> жёстко фиксирует интервал и ломается при
+        изменении размера текста. Иногда встречается «трюк 62.5%»:
+        <code>html { font-size: 62.5% }</code> делает <code>1rem = 10px</code>, чтобы
+        считать в уме (<code>1.6rem = 16px</code>). Сегодня он почти не нужен — лучше
+        оставить корневой размер по умолчанию (чтобы уважать настройку пользователя) и
+        пересчитывать значения в
+        <NuxtLink :to="localePath('/css-units-converter')">конвертере единиц CSS</NuxtLink>.
+      </p>
+
+      <h2>Коротко про другие единицы</h2>
+      <p>
+        Кроме этих трёх есть и другие относительные единицы: <code>%</code> (доля от
+        размера родителя), <code>vw</code>/<code>vh</code> (1% ширины/высоты окна),
+        <code>ch</code> (ширина символа «0» — удобно ограничивать длину строки, например
+        <code>max-width: 60ch</code>). Но в большинстве случаев для типографики и отступов
+        достаточно связки <code>rem</code> + <code>em</code>.
       </p>
 
       <h2>Когда что использовать</h2>
@@ -191,8 +238,12 @@ const faq = computed(() => (locale.value === 'ru' ? faqRu : faqEn))
       </p>
       <ul>
         <li><code>12px = 0.75rem</code></li>
+        <li><code>14px = 0.875rem</code></li>
         <li><code>16px = 1rem</code></li>
+        <li><code>18px = 1.125rem</code></li>
+        <li><code>20px = 1.25rem</code></li>
         <li><code>24px = 1.5rem</code></li>
+        <li><code>32px = 2rem</code></li>
       </ul>
       <p>
         Crucially, <code>rem</code> only ever looks at the root — it ignores nesting.
@@ -232,6 +283,47 @@ const faq = computed(() => (locale.value === 'ru' ? faqRu : faqEn))
         <strong>do not respond</strong> to that preference: text set in <code>16px</code>
         stays small for someone who needs it larger. That is why an accessible interface
         sets font sizes and spacing in <code>rem</code>, not <code>px</code>.
+      </p>
+
+      <h2>Units in media queries</h2>
+      <p>
+        In <code>@media</code> rules, prefer <code>em</code> (or <code>rem</code>) widths
+        over <code>px</code>. An important detail: inside media queries <code>em</code> is
+        always measured against the <strong>browser’s default font-size</strong> (usually
+        16px), not the <code>font-size</code> you set on <code>&lt;html&gt;</code>. So a
+        <code>40em</code> breakpoint is ≈ 640px with default settings, but if the user
+        enlarges their font the breakpoint shifts with them — the layout switches at the
+        width that matches their comfortable reading size. <code>px</code> breakpoints are
+        fixed and can leave narrow columns full of unreadably large text at big font
+        sizes.
+      </p>
+      <pre><code>/* robust: adapts to the user’s font-size */
+@media (min-width: 40em) { /* about 640px at a 16px default */ }
+
+/* fixed: ignores the font-size preference */
+@media (min-width: 640px) { /* ... */ }</code></pre>
+
+      <h2>Typography: rem for size, unitless line-height</h2>
+      <p>
+        A good rule is to set <code>font-size</code> in <code>rem</code> and make
+        <code>line-height</code> <strong>unitless</strong>: <code>line-height: 1.5</code>.
+        A number with no unit is treated as a multiplier of the element’s own font-size
+        and inherits correctly, whereas <code>line-height: 24px</code> locks the spacing
+        and breaks when the text size changes. You may also see the “62.5% trick”:
+        <code>html { font-size: 62.5% }</code> makes <code>1rem = 10px</code> for easy
+        mental math (<code>1.6rem = 16px</code>). It is rarely needed today — better to
+        leave the root at its default (so it respects the user’s preference) and convert
+        values with the
+        <NuxtLink :to="localePath('/css-units-converter')">CSS units converter</NuxtLink>.
+      </p>
+
+      <h2>A note on other units</h2>
+      <p>
+        Beyond these three there are other relative units: <code>%</code> (a fraction of
+        the parent’s size), <code>vw</code>/<code>vh</code> (1% of the viewport width or
+        height) and <code>ch</code> (the width of the “0” glyph — handy for limiting line
+        length, e.g. <code>max-width: 60ch</code>). But for most typography and spacing,
+        the <code>rem</code> + <code>em</code> pair is all you need.
       </p>
 
       <h2>When to use which</h2>
