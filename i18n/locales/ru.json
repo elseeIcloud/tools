@@ -87,6 +87,17 @@
     "hintOpen": "открыть",
     "hintClose": "закрыть"
   },
+  "detect": {
+    "heading": "Распознано",
+    "jwt": "Похоже на JWT",
+    "json": "Похоже на JSON",
+    "url": "Похоже на URL",
+    "color": "Похоже на цвет",
+    "timestamp": "Похоже на Unix timestamp",
+    "binary": "Похоже на двоичный код",
+    "hex": "Похоже на hex",
+    "base64": "Похоже на Base64"
+  },
   "shortcuts": {
     "title": "Горячие клавиши",
     "search": "Поиск",

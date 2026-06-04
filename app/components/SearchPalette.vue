@@ -41,6 +41,14 @@ const results = computed<Tool[]>(() => {
     .slice(0, 8)
 })
 
+// Smart paste: recognise the query as a JWT/JSON/URL/color/etc. and suggest
+// the matching tool above the normal search results.
+const detections = computed(() =>
+  detectInput(query.value)
+    .map((d) => ({ ...d, tool: getTool(d.slug) }))
+    .filter((d): d is { kind: string; slug: string; tool: Tool } => !!d.tool),
+)
+
 const heading = computed(() => {
   if (query.value.trim()) return ''
   return recent.value.length ? t('search.recent') : t('search.popular')
@@ -99,7 +107,8 @@ function onKeydown(e: KeyboardEvent) {
     selected.value = len ? (selected.value - 1 + len) % len : 0
   } else if (e.key === 'Enter') {
     e.preventDefault()
-    go()
+    if (results.value.length) go()
+    else if (detections.value.length) go(detections.value[0].slug)
   }
 }
 
@@ -147,6 +156,27 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
             <!-- Results -->
             <div class="max-h-[52vh] overflow-y-auto p-2">
+              <!-- Smart paste: detected content type -->
+              <template v-if="detections.length">
+                <p class="px-2 pb-1 pt-1 text-xs font-medium uppercase tracking-wide text-accent">{{ t('detect.heading') }}</p>
+                <ul class="mb-1 space-y-0.5">
+                  <li v-for="d in detections" :key="d.slug">
+                    <button
+                      type="button"
+                      class="flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-ink-100/70 dark:hover:bg-ink-800/60"
+                      @click="go(d.slug)"
+                    >
+                      <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent/10 font-mono text-sm text-accent" aria-hidden="true">{{ d.tool.icon }}</span>
+                      <span class="min-w-0 flex-1">
+                        <span class="block truncate font-medium">{{ t(`detect.${d.kind}`) }}</span>
+                        <span class="block truncate text-xs text-ink-400">{{ d.tool[lc].name }}</span>
+                      </span>
+                      <span class="text-ink-300 dark:text-ink-600" aria-hidden="true">↵</span>
+                    </button>
+                  </li>
+                </ul>
+              </template>
+
               <p
                 v-if="heading"
                 class="px-2 pb-1 pt-1 text-xs font-medium uppercase tracking-wide text-ink-400"
@@ -171,7 +201,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
                   </button>
                 </li>
               </ul>
-              <p v-else class="px-2.5 py-6 text-center text-sm text-ink-400">{{ t('search.noResults') }}</p>
+              <p v-else-if="!detections.length" class="px-2.5 py-6 text-center text-sm text-ink-400">{{ t('search.noResults') }}</p>
             </div>
 
             <!-- Hints -->

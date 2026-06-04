@@ -87,6 +87,17 @@
     "hintOpen": "open",
     "hintClose": "close"
   },
+  "detect": {
+    "heading": "Detected",
+    "jwt": "Looks like a JWT",
+    "json": "Looks like JSON",
+    "url": "Looks like a URL",
+    "color": "Looks like a color",
+    "timestamp": "Looks like a Unix timestamp",
+    "binary": "Looks like binary",
+    "hex": "Looks like hex",
+    "base64": "Looks like Base64"
+  },
   "shortcuts": {
     "title": "Keyboard shortcuts",
     "search": "Search",
