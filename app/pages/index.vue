@@ -14,25 +14,9 @@ const recentTools = computed(() =>
   recent.value.map((s) => getTool(s)).filter((tl): tl is NonNullable<typeof tl> => !!tl),
 )
 
-// Collapsible "Recent" section; the choice persists in localStorage. The
-// section is client-only, but localStorage is still touched only in onMounted.
-const RECENT_COLLAPSED_KEY = 'devtools:recent-collapsed'
-const recentCollapsed = ref(false)
-onMounted(() => {
-  try {
-    recentCollapsed.value = localStorage.getItem(RECENT_COLLAPSED_KEY) === '1'
-  } catch {
-    /* ignore unavailable storage */
-  }
-})
-function toggleRecent() {
-  recentCollapsed.value = !recentCollapsed.value
-  try {
-    localStorage.setItem(RECENT_COLLAPSED_KEY, recentCollapsed.value ? '1' : '0')
-  } catch {
-    /* ignore */
-  }
-}
+// Collapsible Favorites/Recent sections; the choice persists in localStorage.
+const { collapsed: favCollapsed, toggle: toggleFav } = useCollapsed('favorites')
+const { collapsed: recentCollapsed, toggle: toggleRecent } = useCollapsed('recent')
 
 const homeUrl = computed(() => SITE_URL + localePath('/'))
 
@@ -98,10 +82,22 @@ useHead(() => ({
     <!-- Favorites + Recent (client-only: depend on localStorage) -->
     <ClientOnly>
       <section v-if="favoriteTools.length" class="container-tool pb-6">
-        <h2 class="mb-4 flex items-center gap-2 text-lg font-semibold text-ink-900 dark:text-ink-100">
+        <button
+          type="button"
+          class="group mb-4 flex w-full items-center gap-2 text-lg font-semibold text-ink-900 dark:text-ink-100"
+          :aria-expanded="!favCollapsed"
+          :title="favCollapsed ? t('home.expand') : t('home.collapse')"
+          @click="toggleFav"
+        >
           <span class="text-amber-500">★</span> {{ t('home.favorites') }}
-        </h2>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <span class="rounded-full bg-ink-100 px-2 py-0.5 text-xs font-medium text-ink-500 dark:bg-ink-800 dark:text-ink-400">{{ favoriteTools.length }}</span>
+          <span
+            class="ml-auto text-sm text-ink-400 transition-transform group-hover:text-accent"
+            :class="favCollapsed ? '' : 'rotate-180'"
+            aria-hidden="true"
+          >▾</span>
+        </button>
+        <div v-show="!favCollapsed" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <ToolCard v-for="tool in favoriteTools" :key="tool.slug" :tool="tool" />
         </div>
       </section>
