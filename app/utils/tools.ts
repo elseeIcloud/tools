@@ -1146,6 +1146,106 @@ export const tools: Tool[] = [
       keywords: ['конвертер изображений', 'png в jpg', 'jpg в webp', 'png в webp', 'конвертировать формат изображения', 'webp конвертер'],
     },
   },
+  {
+    slug: 'bcrypt-generator',
+    category: 'web-security',
+    icon: '🔒',
+    related: ['hash-generator', 'htpasswd-generator', 'password-generator'],
+    en: {
+      name: 'Bcrypt Generator',
+      title: 'Bcrypt Generator & Checker — Hash & Verify Passwords Online',
+      description:
+        'Free online bcrypt generator and verifier. Hash a password with bcrypt at an adjustable cost factor, and check a password against an existing bcrypt hash. Runs entirely in your browser.',
+      keywords: ['bcrypt generator', 'bcrypt hash', 'bcrypt verify', 'bcrypt online', 'hash password bcrypt', 'bcrypt checker'],
+    },
+    ru: {
+      name: 'Генератор bcrypt',
+      title: 'Генератор и проверка bcrypt — хеш и верификация паролей онлайн',
+      description:
+        'Бесплатный онлайн-генератор и верификатор bcrypt. Хешируйте пароль bcrypt с настраиваемым cost-фактором и проверяйте пароль по существующему хешу bcrypt. Всё работает в браузере.',
+      keywords: ['генератор bcrypt', 'bcrypt хеш', 'проверка bcrypt', 'bcrypt онлайн', 'хешировать пароль bcrypt', 'bcrypt чекер'],
+    },
+  },
+  {
+    slug: 'hmac-generator',
+    category: 'web-security',
+    icon: 'HM',
+    related: ['hash-generator', 'jwt-verifier', 'jwt-generator'],
+    en: {
+      name: 'HMAC Generator',
+      title: 'HMAC Generator — SHA-256, SHA-1 & SHA-512 Online',
+      description:
+        'Free online HMAC generator. Compute an HMAC for any message and secret key using SHA-256, SHA-1, SHA-384 or SHA-512, output as hex or Base64. The key never leaves your browser.',
+      keywords: ['hmac generator', 'hmac sha256', 'hmac online', 'hmac sha1', 'generate hmac', 'hmac calculator'],
+    },
+    ru: {
+      name: 'Генератор HMAC',
+      title: 'Генератор HMAC — SHA-256, SHA-1 и SHA-512 онлайн',
+      description:
+        'Бесплатный онлайн-генератор HMAC. Вычисляйте HMAC для сообщения и секретного ключа с SHA-256, SHA-1, SHA-384 или SHA-512, в hex или Base64. Ключ не покидает браузер.',
+      keywords: ['генератор hmac', 'hmac sha256', 'hmac онлайн', 'hmac sha1', 'вычислить hmac', 'hmac калькулятор'],
+    },
+  },
+  {
+    slug: 'aes-encryption',
+    category: 'web-security',
+    icon: '🛡',
+    related: ['hmac-generator', 'hash-generator', 'base64-encode-decode'],
+    en: {
+      name: 'AES Encryption',
+      title: 'AES Encryption — Encrypt & Decrypt Text Online (AES-GCM)',
+      description:
+        'Free online AES text encryption. Encrypt and decrypt text with a passphrase using AES-GCM and PBKDF2 key derivation, all in your browser — your text and password are never uploaded.',
+      keywords: ['aes encryption', 'encrypt text online', 'aes decrypt', 'aes-gcm', 'encrypt decrypt online', 'text encryption'],
+    },
+    ru: {
+      name: 'AES-шифрование',
+      title: 'AES-шифрование — шифрование и расшифровка текста онлайн (AES-GCM)',
+      description:
+        'Бесплатное онлайн AES-шифрование текста. Шифруйте и расшифровывайте текст по паролю с AES-GCM и выводом ключа через PBKDF2 — всё в браузере, текст и пароль не загружаются.',
+      keywords: ['aes шифрование', 'зашифровать текст онлайн', 'aes расшифровка', 'aes-gcm', 'шифрование текста', 'шифрование онлайн'],
+    },
+  },
+  {
+    slug: 'basic-auth-generator',
+    category: 'web-security',
+    icon: '🔓',
+    related: ['htpasswd-generator', 'base64-encode-decode', 'jwt-generator'],
+    en: {
+      name: 'Basic Auth Generator',
+      title: 'Basic Auth Header Generator — Base64 user:password Online',
+      description:
+        'Free online HTTP Basic Auth header generator. Turn a username and password into an Authorization: Basic header (Base64), and decode one back. Everything runs in your browser.',
+      keywords: ['basic auth generator', 'authorization header', 'basic auth base64', 'http basic auth', 'basic auth header', 'encode basic auth'],
+    },
+    ru: {
+      name: 'Генератор Basic Auth',
+      title: 'Генератор заголовка Basic Auth — Base64 user:password онлайн',
+      description:
+        'Бесплатный онлайн-генератор заголовка HTTP Basic Auth. Превращайте логин и пароль в заголовок Authorization: Basic (Base64) и декодируйте обратно. Всё работает в браузере.',
+      keywords: ['генератор basic auth', 'заголовок authorization', 'basic auth base64', 'http basic auth', 'заголовок basic auth', 'кодировать basic auth'],
+    },
+  },
+  {
+    slug: 'password-strength-checker',
+    category: 'web-security',
+    icon: '💪',
+    related: ['password-generator', 'bcrypt-generator', 'hash-generator'],
+    en: {
+      name: 'Password Strength Checker',
+      title: 'Password Strength Checker — Test Password Strength Online',
+      description:
+        'Free online password strength checker. Estimate how strong a password is from its length, character variety and entropy, with crack-time guidance. Your password never leaves your browser.',
+      keywords: ['password strength checker', 'test password strength', 'password entropy', 'how strong is my password', 'password checker', 'strong password test'],
+    },
+    ru: {
+      name: 'Проверка надёжности пароля',
+      title: 'Проверка надёжности пароля — тест силы пароля онлайн',
+      description:
+        'Бесплатная онлайн-проверка надёжности пароля. Оцените силу пароля по длине, разнообразию символов и энтропии, с подсказкой по времени взлома. Пароль не покидает браузер.',
+      keywords: ['проверка надёжности пароля', 'тест пароля', 'энтропия пароля', 'насколько надёжен пароль', 'проверка пароля', 'сила пароля'],
+    },
+  },
 ]
 
 const bySlug = new Map(tools.map((t) => [t.slug, t]))
